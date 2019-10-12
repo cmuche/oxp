@@ -5,14 +5,14 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Way extends OsmElement
+public class Relation extends OsmElement
 {
   @Getter
-  private List<Node> nodes;
+  private List<Member> members;
 
-  public Way(String id)
+  public Relation(String id)
   {
     super(id);
-    nodes = new ArrayList<>();
+    members = new ArrayList<>();
   }
 }

@@ -9,7 +9,7 @@ public class Node extends OsmElement
 
   public Node(String id, Coordinate coordinate)
   {
-    this.id = id;
+    super(id);
     this.coordinate = coordinate;
   }
 }

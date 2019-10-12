@@ -1,14 +1,14 @@
 package cmuche.oxp.parsing;
 
 import cmuche.oxp.Osm;
-import cmuche.oxp.entities.Coordinate;
-import cmuche.oxp.entities.Node;
-import cmuche.oxp.entities.OsmElement;
-import cmuche.oxp.entities.Way;
+import cmuche.oxp.entities.*;
 import lombok.Getter;
+import org.apache.commons.lang3.EnumUtils;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SaxHandler extends DefaultHandler
 {
@@ -40,7 +40,7 @@ public class SaxHandler extends DefaultHandler
   }
 
   @Override
-  public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
+  public void startElement(String uri, String localName, String qName, Attributes attributes)
   {
     if ("node".equals(qName))
     {
@@ -53,11 +53,40 @@ public class SaxHandler extends DefaultHandler
       String id = getIdFromAttributes(attributes);
       currentOsmElement = new Way(id);
     }
+    else if ("relation".equals(qName))
+    {
+      String id = getIdFromAttributes(attributes);
+      currentOsmElement = new Relation(id);
+    }
     else if ("nd".equals(qName) && currentOsmElement instanceof Way)
     {
       String ref = attributes.getValue("ref");
       Node node = osm.getNodes().stream().filter(x -> x.getId().equals(ref)).findFirst().get();
       current(Way.class).getNodes().add(node);
+    }
+    else if ("member".equals(qName) && currentOsmElement instanceof Relation)
+    {
+      String ref = attributes.getValue("ref");
+      String typeString = attributes.getValue("type");
+      MemberType type = EnumUtils.getEnumIgnoreCase(MemberType.class, typeString);
+
+      Set<OsmElement> searchCollection = null;
+      switch (type)
+      {
+        case Way:
+          searchCollection = osm.getWays().stream().collect(Collectors.toSet());
+          break;
+        case Node:
+          searchCollection = osm.getNodes().stream().collect(Collectors.toSet());
+          break;
+        case Relation:
+          searchCollection = osm.getRelations().stream().collect(Collectors.toSet());
+          break;
+      }
+
+      OsmElement element = searchCollection.stream().filter(x -> x.getId().equals(ref)).findFirst().get();
+      Member member = new Member(type, element);
+      current(Relation.class).getMembers().add(member);
     }
     else if ("tag".equals(qName))
     {
@@ -68,7 +97,7 @@ public class SaxHandler extends DefaultHandler
   }
 
   @Override
-  public void endElement(String uri, String localName, String qName) throws SAXException
+  public void endElement(String uri, String localName, String qName)
   {
     if ("node".equals(qName))
     {
@@ -78,6 +107,11 @@ public class SaxHandler extends DefaultHandler
     else if ("way".equals(qName))
     {
       osm.getWays().add(current(Way.class));
+      currentOsmElement = null;
+    }
+    else if ("relation".equals(qName))
+    {
+      osm.getRelations().add(current(Relation.class));
       currentOsmElement = null;
     }
 

@@ -1,9 +1,6 @@
 package cmuche.oxp;
 
-import cmuche.oxp.entities.Coordinate;
-import cmuche.oxp.entities.Node;
-import cmuche.oxp.entities.Way;
-import cmuche.oxp.exceptions.OxpException;
+import cmuche.oxp.entities.*;
 import cmuche.oxp.parsing.OxpParser;
 import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
@@ -14,6 +11,7 @@ public class ParserTest
 {
   private static final String testXml1 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/></osm>";
   private static final String testXml2 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/><node id='2' lat='3.333' lon='4.444'/><way id='3'><nd ref='1'/><nd ref='2'/></way></osm>";
+  private static final String testXml3 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/><way id='2'><nd ref='1'/></way><relation id='3'><member type='node' ref='1'/><member type='way' ref='2'/></relation></osm>";
   private static final String testXml4 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'><tag k='foo' v='bar'/><tag k='foofoo' v='barbar'/></node></osm>";
 
   @Test
@@ -44,6 +42,23 @@ public class ParserTest
     Assert.assertEquals(0, 0);
 
     Assert.assertTrue(CollectionUtils.isEqualCollection(w.getNodes(), osm.getNodes()));
+  }
+
+  @Test
+  @SneakyThrows
+  public void testParseRelations()
+  {
+    Osm osm = OxpParser.parseOsmXml(testXml3);
+
+    Assert.assertEquals(1, osm.getRelations().size());
+
+    Relation r = osm.getRelations().stream().findFirst().get();
+    Assert.assertEquals(2, r.getMembers().size());
+
+    Assert.assertEquals(MemberType.Node, r.getMembers().get(0).getType());
+    Assert.assertEquals(osm.getNodes().stream().findFirst().get(), r.getMembers().get(0).getElement());
+    Assert.assertEquals(MemberType.Way, r.getMembers().get(1).getType());
+    Assert.assertEquals(osm.getWays().stream().findFirst().get(), r.getMembers().get(1).getElement());
   }
 
   @Test

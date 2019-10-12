@@ -4,14 +4,15 @@ import lombok.Getter;
 
 public abstract class OsmElement
 {
-  public OsmElement()
-  {
-    tags = new TagCollection();
-  }
-
   @Getter
-  protected String id;
+  private String id;
 
   @Getter
   protected TagCollection tags;
+
+  public OsmElement(String id)
+  {
+    this.id = id;
+    this.tags = new TagCollection();
+  }
 }
