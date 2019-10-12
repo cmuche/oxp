@@ -5,6 +5,7 @@ import cmuche.oxp.entities.Node;
 import cmuche.oxp.entities.Way;
 import cmuche.oxp.exceptions.OxpException;
 import cmuche.oxp.parsing.OxpParser;
+import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,7 +16,8 @@ public class ParserTest
   private static final String testXml2 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/><node id='2' lat='3.333' lon='4.444'/><way id='3'><nd ref='1'/><nd ref='2'/></way></osm>";
 
   @Test
-  public void testParseNodes() throws OxpException
+  @SneakyThrows
+  public void testParseNodes()
   {
     Osm osm = OxpParser.parseOsmXml(testXml1);
 
@@ -27,7 +29,8 @@ public class ParserTest
   }
 
   @Test
-  public void testParseWays() throws OxpException
+  @SneakyThrows
+  public void testParseWays()
   {
     Osm osm = OxpParser.parseOsmXml(testXml2);
 
