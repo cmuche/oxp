@@ -1,5 +1,6 @@
 package cmuche.oxp;
 
+import cmuche.oxp.entities.Coordinate;
 import cmuche.oxp.entities.Node;
 import cmuche.oxp.entities.Way;
 import cmuche.oxp.exceptions.OxpException;
@@ -22,8 +23,7 @@ public class ParserTest
 
     Node n = osm.getNodes().stream().findFirst().get();
     Assert.assertEquals("1", n.getId());
-    Assert.assertEquals(1.111, n.getCoordinate().getLat(), 0);
-    Assert.assertEquals(2.222, n.getCoordinate().getLon(), 0);
+    Assert.assertEquals(n.getCoordinate(), new Coordinate(1.111, 2.222));
   }
 
   @Test
