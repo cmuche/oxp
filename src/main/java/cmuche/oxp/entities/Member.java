@@ -1,17 +1,17 @@
 package cmuche.oxp.entities;
 
-import com.sun.istack.internal.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 
 @AllArgsConstructor
 public class Member
 {
-  @NotNull
+  @NonNull
   @Getter
   private MemberType type;
 
-  @NotNull
+  @NonNull
   @Getter
   private OsmElement element;
 }

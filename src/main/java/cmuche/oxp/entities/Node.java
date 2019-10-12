@@ -1,11 +1,11 @@
 package cmuche.oxp.entities;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Getter;
+import lombok.NonNull;
 
 public class Node extends OsmElement
 {
-  @NotNull
+  @NonNull
   @Getter
   private Coordinate coordinate;
 
