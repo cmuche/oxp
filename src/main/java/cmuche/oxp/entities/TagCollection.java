@@ -26,4 +26,9 @@ public class TagCollection
   {
     return map.size();
   }
+
+  public boolean hasKey(String key)
+  {
+    return map.containsKey(key);
+  }
 }

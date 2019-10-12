@@ -15,4 +15,12 @@ public class Way extends OsmElement
     super(id);
     nodes = new ArrayList<>();
   }
+
+  public boolean isArea()
+  {
+    if (nodes.size() < 2)
+      return false;
+
+    return nodes.get(0).equals(nodes.get(nodes.size() - 1));
+  }
 }
