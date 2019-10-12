@@ -13,6 +13,8 @@ public class ParserTest
   private static final String testXml2 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/><node id='2' lat='3.333' lon='4.444'/><way id='3'><nd ref='1'/><nd ref='2'/></way></osm>";
   private static final String testXml3 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/><way id='2'><nd ref='1'/></way><relation id='3'><member type='node' ref='1'/><member type='way' ref='2'/></relation></osm>";
   private static final String testXml4 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'><tag k='foo' v='bar'/><tag k='foofoo' v='barbar'/></node></osm>";
+  private static final String testXml5 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/><relation id='3'><member type='node' ref='1'/><member type='way' ref='2'/></relation></osm>";
+  private static final String testXml6 = "<osm version='0.6'><relation id='3'><member type='node' ref='1'/><member type='way' ref='2'/></relation></osm>";
 
   @Test
   @SneakyThrows
@@ -71,5 +73,24 @@ public class ParserTest
     Assert.assertEquals(2, n.getTags().countTags());
     Assert.assertEquals("bar", n.getTags().get("foo"));
     Assert.assertEquals("barbar", n.getTags().get("foofoo"));
+  }
+
+  @Test
+  @SneakyThrows
+  public void testMissingRelationMembers()
+  {
+    Osm osm = OxpParser.parseOsmXml(testXml5);
+
+    Relation r = osm.getRelations().stream().findFirst().get();
+    Assert.assertEquals(1, r.getMembers().size());
+  }
+
+  @Test
+  @SneakyThrows
+  public void testEmptyRelations()
+  {
+    Osm osm = OxpParser.parseOsmXml(testXml6);
+
+    Assert.assertTrue(osm.getRelations().isEmpty());
   }
 }

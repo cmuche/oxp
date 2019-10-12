@@ -7,6 +7,7 @@ import org.apache.commons.lang3.EnumUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -84,9 +85,12 @@ public class SaxHandler extends DefaultHandler
           break;
       }
 
-      OsmElement element = searchCollection.stream().filter(x -> x.getId().equals(ref)).findFirst().get();
-      Member member = new Member(type, element);
-      current(Relation.class).getMembers().add(member);
+      Optional<OsmElement> element = searchCollection.stream().filter(x -> x.getId().equals(ref)).findFirst();
+      if (element.isPresent())
+      {
+        Member member = new Member(type, element.get());
+        current(Relation.class).getMembers().add(member);
+      }
     }
     else if ("tag".equals(qName))
     {
@@ -111,7 +115,8 @@ public class SaxHandler extends DefaultHandler
     }
     else if ("relation".equals(qName))
     {
-      osm.getRelations().add(current(Relation.class));
+      if (!current(Relation.class).getMembers().isEmpty())
+        osm.getRelations().add(current(Relation.class));
       currentOsmElement = null;
     }
 
