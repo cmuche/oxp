@@ -21,4 +21,9 @@ public class TagCollection
   {
     return map.get(key);
   }
+
+  public int countTags()
+  {
+    return map.size();
+  }
 }

@@ -14,6 +14,7 @@ public class ParserTest
 {
   private static final String testXml1 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/></osm>";
   private static final String testXml2 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'/><node id='2' lat='3.333' lon='4.444'/><way id='3'><nd ref='1'/><nd ref='2'/></way></osm>";
+  private static final String testXml4 = "<osm version='0.6'><node id='1' lat='1.111' lon='2.222'><tag k='foo' v='bar'/><tag k='foofoo' v='barbar'/></node></osm>";
 
   @Test
   @SneakyThrows
@@ -43,5 +44,17 @@ public class ParserTest
     Assert.assertEquals(0, 0);
 
     Assert.assertTrue(CollectionUtils.isEqualCollection(w.getNodes(), osm.getNodes()));
+  }
+
+  @Test
+  @SneakyThrows
+  public void testParseTags()
+  {
+    Osm osm = OxpParser.parseOsmXml(testXml4);
+
+    Node n = osm.getNodes().stream().findFirst().get();
+    Assert.assertEquals(2, n.getTags().countTags());
+    Assert.assertEquals("bar", n.getTags().get("foo"));
+    Assert.assertEquals("barbar", n.getTags().get("foofoo"));
   }
 }
