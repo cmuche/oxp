@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class QueryTest
 {
@@ -76,5 +78,30 @@ public class QueryTest
     Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getNodes(), oxp.query().hasTag("n").go()));
     Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getWays(), oxp.query().hasTag("w").go()));
     Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getRelations(), oxp.query().hasTag("r").go()));
+  }
+
+  @Test
+  public void testTagValue()
+  {
+    Set<OsmElement> resTrue = oxp.query().tagValueIs("n", "2").go();
+    Set<OsmElement> resFalse = oxp.query().tagValueIsNot("n", "2").go();
+
+    Assert.assertEquals(1, resTrue.size());
+    Assert.assertEquals(oxp.getNodes().size() - 1, resFalse.size());
+
+    Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getNodes(), Stream.concat(resTrue.stream(), resFalse.stream()).collect(Collectors.toSet())));
+  }
+
+  @Test
+  public void testMembers()
+  {
+    Set<Member> members = oxp.query().relations().members().go();
+    Assert.assertEquals(2, members.size());
+
+    Set<Member> membersFoo = oxp.query().relations().members().roleIs("foo").go();
+    Assert.assertEquals(1, membersFoo.size());
+
+    Set<OsmElement> elements = oxp.query().relations().members().elements().go();
+    Assert.assertEquals(2, elements.size());
   }
 }
