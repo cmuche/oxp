@@ -7,13 +7,13 @@ import lombok.Getter;
 public abstract class OsmElement
 {
   @Getter
-  private String id;
+  private Id id;
 
   @Getter
   @EqualsAndHashCode.Exclude
   protected TagCollection tags;
 
-  public OsmElement(String id)
+  public OsmElement(Id id)
   {
     this.id = id;
     this.tags = new TagCollection();

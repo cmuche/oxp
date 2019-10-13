@@ -1,6 +1,6 @@
 package cmuche.oxp.entities;
 
-public enum MemberType
+public enum ElementType
 {
   Way, Node, Relation
 }

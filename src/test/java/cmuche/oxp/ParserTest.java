@@ -25,7 +25,7 @@ public class ParserTest
     Assert.assertEquals(1, osm.getNodes().size());
 
     Node n = osm.getNodes().stream().findFirst().get();
-    Assert.assertEquals("1", n.getId());
+    Assert.assertEquals(new Id(ElementType.Node, "1"), n.getId());
     Assert.assertEquals(n.getCoordinate(), new Coordinate(1.111, 2.222));
   }
 
@@ -39,7 +39,7 @@ public class ParserTest
     Assert.assertEquals(1, osm.getWays().size());
 
     Way w = osm.getWays().stream().findFirst().get();
-    Assert.assertEquals("3", w.getId());
+    Assert.assertEquals(new Id(ElementType.Way, "3"), w.getId());
     Assert.assertEquals(2, w.getNodes().size());
     Assert.assertEquals(0, 0);
 
@@ -57,9 +57,9 @@ public class ParserTest
     Relation r = osm.getRelations().stream().findFirst().get();
     Assert.assertEquals(2, r.getMembers().size());
 
-    Assert.assertEquals(MemberType.Node, r.getMembers().get(0).getType());
+    Assert.assertEquals(ElementType.Node, r.getMembers().get(0).getType());
     Assert.assertEquals(osm.getNodes().stream().findFirst().get(), r.getMembers().get(0).getElement());
-    Assert.assertEquals(MemberType.Way, r.getMembers().get(1).getType());
+    Assert.assertEquals(ElementType.Way, r.getMembers().get(1).getType());
     Assert.assertEquals(osm.getWays().stream().findFirst().get(), r.getMembers().get(1).getElement());
   }
 

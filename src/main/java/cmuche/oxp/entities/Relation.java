@@ -10,7 +10,7 @@ public class Relation extends OsmElement
   @Getter
   private List<Member> members;
 
-  public Relation(String id)
+  public Relation(Id id)
   {
     super(id);
     members = new ArrayList<>();

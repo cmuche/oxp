@@ -10,7 +10,7 @@ public class Way extends OsmElement
   @Getter
   private List<Node> nodes;
 
-  public Way(String id)
+  public Way(Id id)
   {
     super(id);
     nodes = new ArrayList<>();

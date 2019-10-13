@@ -9,7 +9,7 @@ public class Member
 {
   @NonNull
   @Getter
-  private MemberType type;
+  private ElementType type;
 
   @NonNull
   @Getter

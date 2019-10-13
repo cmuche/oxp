@@ -7,9 +7,8 @@ import org.apache.commons.lang3.EnumUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SaxHandler extends DefaultHandler
 {
@@ -17,10 +16,12 @@ public class SaxHandler extends DefaultHandler
   private Osm osm;
 
   private OsmElement currentOsmElement;
+  private Map<Id, OsmElement> elementIdMap;
 
   public SaxHandler()
   {
     osm = new Osm();
+    elementIdMap = new HashMap<>();
   }
 
   private Coordinate attributesToCoordinates(Attributes attributes)
@@ -30,14 +31,22 @@ public class SaxHandler extends DefaultHandler
     return new Coordinate(lat, lon);
   }
 
-  private String getIdFromAttributes(Attributes attributes)
+  private Id getId(String typeName, Attributes attributes)
   {
-    return attributes.getValue("id");
+    ElementType type = EnumUtils.getEnumIgnoreCase(ElementType.class, typeName);
+    String idStr = attributes.getValue("id");
+    return new Id(type, idStr);
   }
 
   public <T extends OsmElement> T current(Class<T> type)
   {
     return type.cast(currentOsmElement);
+  }
+
+  public <T extends OsmElement> T byRef(Class<T> type, Id id)
+  {
+    OsmElement element = elementIdMap.get(id);
+    return type.cast(element);
   }
 
   @Override
@@ -46,49 +55,35 @@ public class SaxHandler extends DefaultHandler
     if ("node".equals(qName))
     {
       Coordinate coordinates = attributesToCoordinates(attributes);
-      String id = getIdFromAttributes(attributes);
+      Id id = getId(qName, attributes);
       currentOsmElement = new Node(id, coordinates);
     }
     else if ("way".equals(qName))
     {
-      String id = getIdFromAttributes(attributes);
+      Id id = getId(qName, attributes);
       currentOsmElement = new Way(id);
     }
     else if ("relation".equals(qName))
     {
-      String id = getIdFromAttributes(attributes);
+      Id id = getId(qName, attributes);
       currentOsmElement = new Relation(id);
     }
     else if ("nd".equals(qName) && currentOsmElement instanceof Way)
     {
       String ref = attributes.getValue("ref");
-      Node node = osm.getNodes().stream().filter(x -> x.getId().equals(ref)).findFirst().get();
+      Node node = byRef(Node.class, new Id(ElementType.Node, ref));
       current(Way.class).getNodes().add(node);
     }
     else if ("member".equals(qName) && currentOsmElement instanceof Relation)
     {
       String ref = attributes.getValue("ref");
       String typeString = attributes.getValue("type");
-      MemberType type = EnumUtils.getEnumIgnoreCase(MemberType.class, typeString);
+      ElementType type = EnumUtils.getEnumIgnoreCase(ElementType.class, typeString);
 
-      Set<OsmElement> searchCollection = null;
-      switch (type)
+      OsmElement element = byRef(OsmElement.class, new Id(type, ref));
+      if (element != null)
       {
-        case Way:
-          searchCollection = osm.getWays().stream().collect(Collectors.toSet());
-          break;
-        case Node:
-          searchCollection = osm.getNodes().stream().collect(Collectors.toSet());
-          break;
-        case Relation:
-          searchCollection = osm.getRelations().stream().collect(Collectors.toSet());
-          break;
-      }
-
-      Optional<OsmElement> element = searchCollection.stream().filter(x -> x.getId().equals(ref)).findFirst();
-      if (element.isPresent())
-      {
-        Member member = new Member(type, element.get());
+        Member member = new Member(type, element);
         current(Relation.class).getMembers().add(member);
       }
     }
@@ -106,19 +101,25 @@ public class SaxHandler extends DefaultHandler
     if ("node".equals(qName))
     {
       osm.getNodes().add(current(Node.class));
-      currentOsmElement = null;
+      processedElement();
     }
     else if ("way".equals(qName))
     {
       osm.getWays().add(current(Way.class));
-      currentOsmElement = null;
+      processedElement();
     }
     else if ("relation".equals(qName))
     {
       if (!current(Relation.class).getMembers().isEmpty())
         osm.getRelations().add(current(Relation.class));
-      currentOsmElement = null;
-    }
 
+      processedElement();
+    }
+  }
+
+  private void processedElement()
+  {
+    elementIdMap.put(currentOsmElement.getId(), currentOsmElement);
+    currentOsmElement = null;
   }
 }
