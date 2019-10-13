@@ -1,5 +1,3 @@
-![Build Status](https://srv.cmuche.de:9099/buildStatus/icon?job=OXP)
-
 # OpenStreetMap XML Parser
 - Parses OSM XML files (or any other OSM XML input) and offers an easy to use interface for the basic element types (nodes, ways, relations).
 - Stores the data efficiently in memory, no database required
