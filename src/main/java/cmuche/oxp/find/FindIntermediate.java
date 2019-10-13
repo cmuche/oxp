@@ -1,6 +1,6 @@
 package cmuche.oxp.find;
 
-import cmuche.oxp.Osm;
+import cmuche.oxp.Oxp;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,12 +8,12 @@ import java.util.stream.Stream;
 
 public abstract class FindIntermediate<T extends Object>
 {
-  protected Osm osm;
+  protected Oxp oxp;
   protected Stream<T> currentElements;
 
-  public FindIntermediate(Osm osm, Stream<T> currentElements)
+  public FindIntermediate(Oxp oxp, Stream<T> currentElements)
   {
-    this.osm = osm;
+    this.oxp = oxp;
     this.currentElements = currentElements;
   }
 

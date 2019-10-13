@@ -1,6 +1,6 @@
 package cmuche.oxp.parsing;
 
-import cmuche.oxp.Osm;
+import cmuche.oxp.Oxp;
 import cmuche.oxp.exceptions.OxpException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 public class OxpParser
 {
-  public static Osm parseOsmFile(File file) throws OxpException
+  public static Oxp parseOsmFile(File file) throws OxpException
   {
     try
     {
@@ -27,13 +27,13 @@ public class OxpParser
     }
   }
 
-  public static Osm parseOsmXml(String xml) throws OxpException
+  public static Oxp parseOsmXml(String xml) throws OxpException
   {
     InputStream stream = IOUtils.toInputStream(xml, StandardCharsets.UTF_8);
     return parseOsmStream(stream);
   }
 
-  public static Osm parseOsmStream(InputStream stream) throws OxpException
+  public static Oxp parseOsmStream(InputStream stream) throws OxpException
   {
     try
     {
@@ -42,8 +42,8 @@ public class OxpParser
       SaxHandler handler = new SaxHandler();
       saxParser.parse(stream, handler);
 
-      Osm osm = handler.getOsm();
-      return osm;
+      Oxp oxp = handler.getOxp();
+      return oxp;
     }
     catch (Exception ex)
     {

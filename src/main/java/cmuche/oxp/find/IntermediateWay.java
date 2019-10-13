@@ -1,15 +1,15 @@
 package cmuche.oxp.find;
 
-import cmuche.oxp.Osm;
+import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.Way;
 
 import java.util.stream.Stream;
 
 public class IntermediateWay<T extends Way> extends FindIntermediateTaggable<T>
 {
-  public IntermediateWay(Osm osm, Stream currentElements)
+  public IntermediateWay(Oxp oxp, Stream currentElements)
   {
-    super(osm, currentElements);
+    super(oxp, currentElements);
   }
 
   @Override

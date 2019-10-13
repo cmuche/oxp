@@ -11,41 +11,41 @@ import java.util.Set;
 public class FindTest
 {
 
-  private Osm osm;
+  private Oxp oxp;
 
   @Before
   public void init()
   {
-    osm = new Osm();
+    oxp = new Oxp();
     Node n1 = new Node(new Id(ElementType.Node, "1"), new Coordinate(1, 2));
     Node n2 = new Node(new Id(ElementType.Node, "2"), new Coordinate(1, 2));
     Node n3 = new Node(new Id(ElementType.Node, "3"), new Coordinate(1, 2));
-    osm.getNodes().add(n1);
-    osm.getNodes().add(n2);
-    osm.getNodes().add(n3);
+    oxp.getNodes().add(n1);
+    oxp.getNodes().add(n2);
+    oxp.getNodes().add(n3);
 
     Way w1 = new Way(new Id(ElementType.Way, "1"));
     w1.getNodes().add(n1);
     w1.getNodes().add(n2);
-    osm.getWays().add(w1);
+    oxp.getWays().add(w1);
 
     Way w2 = new Way(new Id(ElementType.Way, "2"));
     w1.getNodes().add(n2);
     w1.getNodes().add(n3);
-    osm.getWays().add(w2);
+    oxp.getWays().add(w2);
   }
 
   @Test
   public void testAllNodes()
   {
-    Set res = osm.query().nodes().go();
-    Assert.assertTrue(CollectionUtils.isEqualCollection(res, osm.getNodes()));
+    Set res = oxp.query().nodes().go();
+    Assert.assertTrue(CollectionUtils.isEqualCollection(res, oxp.getNodes()));
   }
 
   @Test
   public void testAllWays()
   {
-    Set res = osm.query().ways().go();
-    Assert.assertTrue(CollectionUtils.isEqualCollection(res, osm.getWays()));
+    Set res = oxp.query().ways().go();
+    Assert.assertTrue(CollectionUtils.isEqualCollection(res, oxp.getWays()));
   }
 }

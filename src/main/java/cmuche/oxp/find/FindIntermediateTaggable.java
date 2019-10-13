@@ -1,15 +1,15 @@
 package cmuche.oxp.find;
 
-import cmuche.oxp.Osm;
+import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.OsmElement;
 
 import java.util.stream.Stream;
 
 public abstract class FindIntermediateTaggable<T extends OsmElement> extends FindIntermediate<T>
 {
-  public FindIntermediateTaggable(Osm osm, Stream currentElements)
+  public FindIntermediateTaggable(Oxp oxp, Stream currentElements)
   {
-    super(osm, currentElements);
+    super(oxp, currentElements);
   }
 
   public abstract FindIntermediate<T> tagValueIs(String key, String value);

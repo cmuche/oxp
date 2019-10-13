@@ -1,6 +1,6 @@
 package cmuche.oxp.parsing;
 
-import cmuche.oxp.Osm;
+import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.*;
 import lombok.Getter;
 import org.apache.commons.lang3.EnumUtils;
@@ -13,14 +13,14 @@ import java.util.Map;
 public class SaxHandler extends DefaultHandler
 {
   @Getter
-  private Osm osm;
+  private Oxp oxp;
 
   private OsmElement currentOsmElement;
   private Map<Id, OsmElement> elementIdMap;
 
   public SaxHandler()
   {
-    osm = new Osm();
+    oxp = new Oxp();
     elementIdMap = new HashMap<>();
   }
 
@@ -103,18 +103,18 @@ public class SaxHandler extends DefaultHandler
   {
     if ("node".equals(qName))
     {
-      osm.getNodes().add(current(Node.class));
+      oxp.getNodes().add(current(Node.class));
       processedElement();
     }
     else if ("way".equals(qName))
     {
-      osm.getWays().add(current(Way.class));
+      oxp.getWays().add(current(Way.class));
       processedElement();
     }
     else if ("relation".equals(qName))
     {
       if (!current(Relation.class).getMembers().isEmpty())
-        osm.getRelations().add(current(Relation.class));
+        oxp.getRelations().add(current(Relation.class));
 
       processedElement();
     }

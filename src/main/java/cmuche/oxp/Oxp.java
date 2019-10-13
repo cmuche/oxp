@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class Osm
+public class Oxp
 {
   @Getter
   private Set<Node> nodes;
@@ -26,7 +26,7 @@ public class Osm
   @Getter
   private Set<Relation> relations;
 
-  public Osm()
+  public Oxp()
   {
     nodes = new HashSet<>();
     ways = new HashSet<>();

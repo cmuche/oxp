@@ -1,16 +1,16 @@
 package cmuche.oxp.find;
 
 
-import cmuche.oxp.Osm;
+import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.Node;
 
 import java.util.stream.Stream;
 
 public class IntermediateNode<T extends Node> extends FindIntermediateTaggable<T>
 {
-  public IntermediateNode(Osm osm, Stream currentElements)
+  public IntermediateNode(Oxp oxp, Stream currentElements)
   {
-    super(osm, currentElements);
+    super(oxp, currentElements);
   }
 
   @Override

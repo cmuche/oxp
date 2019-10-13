@@ -1,6 +1,6 @@
 package cmuche.oxp.find;
 
-import cmuche.oxp.Osm;
+import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.Member;
 import cmuche.oxp.entities.OsmElement;
 
@@ -8,9 +8,9 @@ import java.util.stream.Stream;
 
 public class IntermediateMember<T extends Member> extends FindIntermediate<T>
 {
-  public IntermediateMember(Osm osm, Stream currentElements)
+  public IntermediateMember(Oxp oxp, Stream currentElements)
   {
-    super(osm, currentElements);
+    super(oxp, currentElements);
   }
 
   public IntermediateMember<T> roleIs(String role)
@@ -22,7 +22,7 @@ public class IntermediateMember<T extends Member> extends FindIntermediate<T>
   public IntermediateGeneric<OsmElement> elements()
   {
     Stream<OsmElement> newStream = currentElements.map(member -> member.getElement());
-    return new IntermediateGeneric<>(osm, newStream);
+    return new IntermediateGeneric<>(oxp, newStream);
   }
 
 }

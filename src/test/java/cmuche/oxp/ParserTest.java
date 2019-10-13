@@ -20,11 +20,11 @@ public class ParserTest
   @SneakyThrows
   public void testParseNodes()
   {
-    Osm osm = OxpParser.parseOsmXml(testXml1);
+    Oxp oxp = OxpParser.parseOsmXml(testXml1);
 
-    Assert.assertEquals(1, osm.getNodes().size());
+    Assert.assertEquals(1, oxp.getNodes().size());
 
-    Node n = osm.getNodes().stream().findFirst().get();
+    Node n = oxp.getNodes().stream().findFirst().get();
     Assert.assertEquals(new Id(ElementType.Node, "1"), n.getId());
     Assert.assertEquals(n.getCoordinate(), new Coordinate(1.111, 2.222));
   }
@@ -33,43 +33,43 @@ public class ParserTest
   @SneakyThrows
   public void testParseWays()
   {
-    Osm osm = OxpParser.parseOsmXml(testXml2);
+    Oxp oxp = OxpParser.parseOsmXml(testXml2);
 
-    Assert.assertEquals(2, osm.getNodes().size());
-    Assert.assertEquals(1, osm.getWays().size());
+    Assert.assertEquals(2, oxp.getNodes().size());
+    Assert.assertEquals(1, oxp.getWays().size());
 
-    Way w = osm.getWays().stream().findFirst().get();
+    Way w = oxp.getWays().stream().findFirst().get();
     Assert.assertEquals(new Id(ElementType.Way, "3"), w.getId());
     Assert.assertEquals(2, w.getNodes().size());
     Assert.assertEquals(0, 0);
 
-    Assert.assertTrue(CollectionUtils.isEqualCollection(w.getNodes(), osm.getNodes()));
+    Assert.assertTrue(CollectionUtils.isEqualCollection(w.getNodes(), oxp.getNodes()));
   }
 
   @Test
   @SneakyThrows
   public void testParseRelations()
   {
-    Osm osm = OxpParser.parseOsmXml(testXml3);
+    Oxp oxp = OxpParser.parseOsmXml(testXml3);
 
-    Assert.assertEquals(1, osm.getRelations().size());
+    Assert.assertEquals(1, oxp.getRelations().size());
 
-    Relation r = osm.getRelations().stream().findFirst().get();
+    Relation r = oxp.getRelations().stream().findFirst().get();
     Assert.assertEquals(2, r.getMembers().size());
 
     Assert.assertEquals(ElementType.Node, r.getMembers().get(0).getType());
-    Assert.assertEquals(osm.getNodes().stream().findFirst().get(), r.getMembers().get(0).getElement());
+    Assert.assertEquals(oxp.getNodes().stream().findFirst().get(), r.getMembers().get(0).getElement());
     Assert.assertEquals(ElementType.Way, r.getMembers().get(1).getType());
-    Assert.assertEquals(osm.getWays().stream().findFirst().get(), r.getMembers().get(1).getElement());
+    Assert.assertEquals(oxp.getWays().stream().findFirst().get(), r.getMembers().get(1).getElement());
   }
 
   @Test
   @SneakyThrows
   public void testParseTags()
   {
-    Osm osm = OxpParser.parseOsmXml(testXml4);
+    Oxp oxp = OxpParser.parseOsmXml(testXml4);
 
-    Node n = osm.getNodes().stream().findFirst().get();
+    Node n = oxp.getNodes().stream().findFirst().get();
     Assert.assertEquals(2, n.getTags().countTags());
     Assert.assertEquals("bar", n.getTags().get("foo"));
     Assert.assertEquals("barbar", n.getTags().get("foofoo"));
@@ -79,9 +79,9 @@ public class ParserTest
   @SneakyThrows
   public void testMissingRelationMembers()
   {
-    Osm osm = OxpParser.parseOsmXml(testXml5);
+    Oxp oxp = OxpParser.parseOsmXml(testXml5);
 
-    Relation r = osm.getRelations().stream().findFirst().get();
+    Relation r = oxp.getRelations().stream().findFirst().get();
     Assert.assertEquals(1, r.getMembers().size());
   }
 
@@ -89,8 +89,8 @@ public class ParserTest
   @SneakyThrows
   public void testEmptyRelations()
   {
-    Osm osm = OxpParser.parseOsmXml(testXml6);
+    Oxp oxp = OxpParser.parseOsmXml(testXml6);
 
-    Assert.assertTrue(osm.getRelations().isEmpty());
+    Assert.assertTrue(oxp.getRelations().isEmpty());
   }
 }
