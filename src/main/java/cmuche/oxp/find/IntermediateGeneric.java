@@ -8,7 +8,7 @@ import cmuche.oxp.entities.Way;
 
 import java.util.stream.Stream;
 
-public class IntermediateGeneric<T extends OsmElement> extends FindIntermediate
+public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateTaggable
 {
   public IntermediateGeneric(Osm osm, Stream currentElements)
   {
@@ -16,21 +16,21 @@ public class IntermediateGeneric<T extends OsmElement> extends FindIntermediate
   }
 
   @Override
-  public IntermediateGeneric tagValueIs(String key, String value)
+  public IntermediateGeneric<T> tagValueIs(String key, String value)
   {
     getTagValueIs(key, value);
     return this;
   }
 
   @Override
-  public IntermediateGeneric tagValueIsNot(String key, String value)
+  public IntermediateGeneric<T> tagValueIsNot(String key, String value)
   {
     getTagValueIsNot(key, value);
     return this;
   }
 
   @Override
-  public IntermediateGeneric hasTag(String key)
+  public IntermediateGeneric<T> hasTag(String key)
   {
     getHasTag(key);
     return this;

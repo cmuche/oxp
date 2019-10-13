@@ -5,7 +5,7 @@ import cmuche.oxp.entities.Relation;
 
 import java.util.stream.Stream;
 
-public class IntermediateRelation<T extends Relation> extends FindIntermediate
+public class IntermediateRelation<T extends Relation> extends FindIntermediateTaggable
 {
   public IntermediateRelation(Osm osm, Stream currentElements)
   {

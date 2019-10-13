@@ -6,7 +6,7 @@ import cmuche.oxp.entities.Node;
 
 import java.util.stream.Stream;
 
-public class IntermediateNode<T extends Node> extends FindIntermediate
+public class IntermediateNode<T extends Node> extends FindIntermediateTaggable
 {
   public IntermediateNode(Osm osm, Stream currentElements)
   {
