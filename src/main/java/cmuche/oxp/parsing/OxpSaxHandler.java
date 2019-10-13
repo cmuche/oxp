@@ -10,7 +10,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SaxHandler extends DefaultHandler
+public class OxpSaxHandler extends DefaultHandler
 {
   @Getter
   private Oxp oxp;
@@ -18,7 +18,7 @@ public class SaxHandler extends DefaultHandler
   private OsmElement currentOsmElement;
   private Map<Id, OsmElement> elementIdMap;
 
-  public SaxHandler()
+  public OxpSaxHandler()
   {
     oxp = new Oxp();
     elementIdMap = new HashMap<>();

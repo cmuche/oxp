@@ -39,7 +39,7 @@ public class OxpParser
     {
       SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
       SAXParser saxParser = saxParserFactory.newSAXParser();
-      SaxHandler handler = new SaxHandler();
+      OxpSaxHandler handler = new OxpSaxHandler();
       saxParser.parse(stream, handler);
 
       Oxp oxp = handler.getOxp();
