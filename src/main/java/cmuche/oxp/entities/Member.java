@@ -14,4 +14,7 @@ public class Member
   @NonNull
   @Getter
   private OsmElement element;
+
+  @Getter
+  private String role;
 }

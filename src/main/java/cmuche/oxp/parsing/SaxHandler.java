@@ -83,7 +83,10 @@ public class SaxHandler extends DefaultHandler
       OsmElement element = byRef(OsmElement.class, new Id(type, ref));
       if (element != null)
       {
-        Member member = new Member(type, element);
+        String role = attributes.getValue("role");
+        role = role.isEmpty() ? null : role;
+
+        Member member = new Member(type, element, role);
         current(Relation.class).getMembers().add(member);
       }
     }
