@@ -84,7 +84,7 @@ public class SaxHandler extends DefaultHandler
       if (element != null)
       {
         String role = attributes.getValue("role");
-        role = role.isEmpty() ? null : role;
+        role = role == null || role.isEmpty() ? null : role;
 
         Member member = new Member(type, element, role);
         current(Relation.class).getMembers().add(member);
