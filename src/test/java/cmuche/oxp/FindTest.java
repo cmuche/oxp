@@ -38,14 +38,14 @@ public class FindTest
   @Test
   public void testAllNodes()
   {
-    Set res = osm.find().nodes().results();
+    Set res = osm.query().nodes().go();
     Assert.assertTrue(CollectionUtils.isEqualCollection(res, osm.getNodes()));
   }
 
   @Test
   public void testAllWays()
   {
-    Set res = osm.find().ways().results();
+    Set res = osm.query().ways().go();
     Assert.assertTrue(CollectionUtils.isEqualCollection(res, osm.getWays()));
   }
 }

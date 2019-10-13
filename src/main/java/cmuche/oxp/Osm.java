@@ -29,7 +29,7 @@ public class Osm
     relations = new HashSet<>();
   }
 
-  public IntermediateGeneric<OsmElement> find()
+  public IntermediateGeneric<OsmElement> query()
   {
     Stream<OsmElement> stream = Stream.concat(Stream.concat(nodes.stream(), ways.stream()), relations.stream());
     return new IntermediateGeneric<>(this, stream);

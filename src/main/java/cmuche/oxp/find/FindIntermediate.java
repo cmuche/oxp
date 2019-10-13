@@ -17,7 +17,7 @@ public abstract class FindIntermediate<T extends Object>
     this.currentElements = currentElements;
   }
 
-  public Set<T> results()
+  public Set<T> go()
   {
     return currentElements.collect(Collectors.toSet());
   }
