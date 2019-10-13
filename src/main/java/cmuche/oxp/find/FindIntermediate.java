@@ -2,7 +2,6 @@ package cmuche.oxp.find;
 
 import cmuche.oxp.Osm;
 import cmuche.oxp.entities.OsmElement;
-import cmuche.oxp.entities.Way;
 
 import java.util.Set;
 import java.util.stream.Collectors;
