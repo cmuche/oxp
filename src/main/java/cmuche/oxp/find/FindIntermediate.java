@@ -18,24 +18,25 @@ public abstract class FindIntermediate<T extends OsmElement>
     this.currentElements = currentElements;
   }
 
-  protected abstract FindIntermediate<T> makeInstance(Osm osm, Stream<T> currentElements);
+  public abstract FindIntermediate<T> tagValueIs(String key, String value);
 
-  public FindIntermediate<T> tagValueIs(String key, String value)
+  public abstract FindIntermediate<T> tagValueIsNot(String key, String value);
+
+  public abstract FindIntermediate<T> hasTag(String key);
+
+  protected void getTagValueIs(String key, String value)
   {
-    Stream<T> stream = currentElements.filter(x -> x.getTags().hasKey(key) && x.getTags().get(key).equals(value));
-    return makeInstance(osm, stream);
+    currentElements = currentElements.filter(x -> x.getTags().hasKey(key) && x.getTags().get(key).equals(value));
   }
 
-  public FindIntermediate<T> tagValueIsNot(String key, String value)
+  protected void getTagValueIsNot(String key, String value)
   {
-    Stream<T> stream = currentElements.filter(x -> x.getTags().hasKey(key) && !x.getTags().get(key).equals(value));
-    return makeInstance(osm, stream);
+    currentElements = currentElements.filter(x -> x.getTags().hasKey(key) && !x.getTags().get(key).equals(value));
   }
 
-  public FindIntermediate<T> hasTag(String key)
+  public void getHasTag(String key)
   {
-    Stream<T> stream = currentElements.filter(x -> x.getTags().hasKey(key));
-    return makeInstance(osm, stream);
+    currentElements = currentElements.filter(x -> x.getTags().hasKey(key));
   }
 
   public Set<T> results()

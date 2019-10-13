@@ -15,20 +15,35 @@ public class IntermediateGeneric<T extends OsmElement> extends FindIntermediate
   }
 
   @Override
-  protected FindIntermediate makeInstance(Osm osm, Stream currentElements)
+  public IntermediateGeneric tagValueIs(String key, String value)
   {
-    return new IntermediateGeneric(osm, currentElements);
+    getTagValueIs(key, value);
+    return this;
+  }
+
+  @Override
+  public IntermediateGeneric tagValueIsNot(String key, String value)
+  {
+    getTagValueIsNot(key, value);
+    return this;
+  }
+
+  @Override
+  public IntermediateGeneric hasTag(String key)
+  {
+    getHasTag(key);
+    return this;
   }
 
   public IntermediateWay<Way> ways()
   {
     Stream stream = currentElements.filter(x -> x instanceof Way);
-    return new IntermediateWay<>(osm, stream);
+    return new IntermediateWay(osm, stream);
   }
 
   public IntermediateNode<Node> nodes()
   {
     Stream stream = currentElements.filter(x -> x instanceof Node);
-    return new IntermediateNode<>(osm, stream);
+    return new IntermediateNode(osm, stream);
   }
 }

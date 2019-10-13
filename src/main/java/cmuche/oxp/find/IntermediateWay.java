@@ -13,14 +13,29 @@ public class IntermediateWay<T extends Way> extends FindIntermediate
   }
 
   @Override
-  protected FindIntermediate makeInstance(Osm osm, Stream currentElements)
+  public IntermediateWay<T> tagValueIs(String key, String value)
   {
-    return new IntermediateWay(osm, currentElements);
+    getTagValueIs(key, value);
+    return this;
+  }
+
+  @Override
+  public IntermediateWay<T> tagValueIsNot(String key, String value)
+  {
+    getTagValueIsNot(key, value);
+    return this;
+  }
+
+  @Override
+  public IntermediateWay<T> hasTag(String key)
+  {
+    getHasTag(key);
+    return this;
   }
 
   public FindIntermediate<T> isArea()
   {
-    Stream<T> stream = currentElements.filter(x -> ((Way)x).isArea());
-    return makeInstance(osm, stream);
+    currentElements = currentElements.filter(x -> ((Way) x).isArea());
+    return this;
   }
 }

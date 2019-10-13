@@ -14,8 +14,24 @@ public class IntermediateNode<T extends Node> extends FindIntermediate
   }
 
   @Override
-  protected FindIntermediate makeInstance(Osm osm, Stream stream)
+  public IntermediateNode tagValueIs(String key, String value)
   {
-    return new IntermediateNode(osm, stream);
+    getTagValueIs(key, value);
+    return this;
   }
+
+  @Override
+  public IntermediateNode tagValueIsNot(String key, String value)
+  {
+    getTagValueIsNot(key, value);
+    return this;
+  }
+
+  @Override
+  public IntermediateNode hasTag(String key)
+  {
+    getHasTag(key);
+    return this;
+  }
+
 }
