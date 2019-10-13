@@ -5,8 +5,12 @@ import cmuche.oxp.entities.OsmElement;
 import cmuche.oxp.entities.Relation;
 import cmuche.oxp.entities.Way;
 import cmuche.oxp.find.IntermediateGeneric;
+import cmuche.oxp.find.IntermediateNode;
+import cmuche.oxp.find.IntermediateRelation;
+import cmuche.oxp.find.IntermediateWay;
 import lombok.Getter;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -33,6 +37,26 @@ public class Osm
   {
     Stream<OsmElement> stream = Stream.concat(Stream.concat(nodes.stream(), ways.stream()), relations.stream());
     return new IntermediateGeneric<>(this, stream);
+  }
+
+  public IntermediateGeneric<OsmElement> queryFrom(Collection<Way> scopeElements)
+  {
+    return new IntermediateGeneric<>(this, scopeElements.stream());
+  }
+
+  public IntermediateNode<Node> queryFromNodes(Collection<Way> scopeElements)
+  {
+    return new IntermediateNode<>(this, scopeElements.stream());
+  }
+
+  public IntermediateWay<Way> queryFromWays(Collection<Way> scopeElements)
+  {
+    return new IntermediateWay<>(this, scopeElements.stream());
+  }
+
+  public IntermediateRelation<Relation> queryFromRelations(Collection<Relation> scopeElements)
+  {
+    return new IntermediateRelation<>(this, scopeElements.stream());
   }
 
 }
