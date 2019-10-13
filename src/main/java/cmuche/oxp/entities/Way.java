@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Way extends OsmElement
+public class Way extends Spatial
 {
   @Getter
   private List<Node> nodes;

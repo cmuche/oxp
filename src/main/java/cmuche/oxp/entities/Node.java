@@ -3,7 +3,7 @@ package cmuche.oxp.entities;
 import lombok.Getter;
 import lombok.NonNull;
 
-public class Node extends OsmElement
+public class Node extends Spatial
 {
   @NonNull
   @Getter
