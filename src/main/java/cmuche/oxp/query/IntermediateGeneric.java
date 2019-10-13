@@ -1,4 +1,4 @@
-package cmuche.oxp.find;
+package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.Node;

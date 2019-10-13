@@ -4,10 +4,10 @@ import cmuche.oxp.entities.Node;
 import cmuche.oxp.entities.OsmElement;
 import cmuche.oxp.entities.Relation;
 import cmuche.oxp.entities.Way;
-import cmuche.oxp.find.IntermediateGeneric;
-import cmuche.oxp.find.IntermediateNode;
-import cmuche.oxp.find.IntermediateRelation;
-import cmuche.oxp.find.IntermediateWay;
+import cmuche.oxp.query.IntermediateGeneric;
+import cmuche.oxp.query.IntermediateNode;
+import cmuche.oxp.query.IntermediateRelation;
+import cmuche.oxp.query.IntermediateWay;
 import lombok.Getter;
 
 import java.util.Collection;
