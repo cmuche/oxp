@@ -1,7 +1,7 @@
 package cmuche.oxp.entities;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class TagCollection
 {
@@ -9,7 +9,7 @@ public class TagCollection
 
   public TagCollection()
   {
-    map = new TreeMap<>();
+    map = new HashMap<>();
   }
 
   public void set(String key, String value)
