@@ -14,21 +14,21 @@ public class IntermediateNode<T extends Node> extends FindIntermediate
   }
 
   @Override
-  public IntermediateNode tagValueIs(String key, String value)
+  public IntermediateNode<T> tagValueIs(String key, String value)
   {
     getTagValueIs(key, value);
     return this;
   }
 
   @Override
-  public IntermediateNode tagValueIsNot(String key, String value)
+  public IntermediateNode<T> tagValueIsNot(String key, String value)
   {
     getTagValueIsNot(key, value);
     return this;
   }
 
   @Override
-  public IntermediateNode hasTag(String key)
+  public IntermediateNode<T> hasTag(String key)
   {
     getHasTag(key);
     return this;
