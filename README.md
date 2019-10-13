@@ -7,11 +7,14 @@
 Osm osm = OxpParser.parseOsmFile(new File("map.osm"));
     
 // Find all ways that create an area
-Set<Way> allAreas = osm.find().ways().isArea().results();
+Set<Way> allAreas = osm.query().ways().isArea().go();
     
 // Find all nodes or ways which represent a building
-Set<OsmElement> allBuildings = osm.find().tagValueIs("building", "yes").results();
+Set<OsmElement> allBuildings = osm.query().tagValueIs("building", "yes").go();
 
 // Find all trees which have their leaf type specified
-Set<Node> allTrees = osm.find().nodes().tagValueIs("natural", "tree").hasTag("leaf_type").results();
+Set<Node> allTrees = osm.query().nodes().tagValueIs("natural", "tree").hasTag("leaf_type").go();
+
+// Find all elements which are bus stops and are referenced in a relation which is a bus line and has the line number '36'
+Set<OsmElement> stops = osm.query().relations().tagValueIs("route", "bus").tagValueIs("ref", "36").members().elements().tagValueIs("highway", "bus_stop").go();
 ```
