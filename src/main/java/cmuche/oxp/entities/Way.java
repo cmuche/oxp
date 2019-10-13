@@ -18,7 +18,7 @@ public class Way extends Spatial
 
   public boolean isArea()
   {
-    if (nodes.size() < 2)
+    if (nodes.size() < 3)
       return false;
 
     return nodes.get(0).equals(nodes.get(nodes.size() - 1));
