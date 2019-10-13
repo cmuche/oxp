@@ -20,9 +20,9 @@ public class QueryTest
   public void init()
   {
     oxp = new Oxp();
-    Node n1 = new Node(new Id(ElementType.Node, "1"), new Coordinate(1, 2));
-    Node n2 = new Node(new Id(ElementType.Node, "2"), new Coordinate(1, 2));
-    Node n3 = new Node(new Id(ElementType.Node, "3"), new Coordinate(1, 2));
+    Node n1 = new Node(new Id(ElementType.Node, "1"), new Coordinate(1, 1));
+    Node n2 = new Node(new Id(ElementType.Node, "2"), new Coordinate(2, 2));
+    Node n3 = new Node(new Id(ElementType.Node, "3"), new Coordinate(3, 3));
 
     n1.getTags().set("n", "1");
     n2.getTags().set("n", "2");
@@ -73,6 +73,13 @@ public class QueryTest
   }
 
   @Test
+  public void testAllSpatials()
+  {
+    Set res = oxp.query().spatials().go();
+    Assert.assertTrue(CollectionUtils.isEqualCollection(res, Stream.concat(oxp.getNodes().stream(), oxp.getWays().stream()).collect(Collectors.toSet())));
+  }
+
+  @Test
   public void testHasTag()
   {
     Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getNodes(), oxp.query().hasTag("n").go()));
@@ -103,5 +110,12 @@ public class QueryTest
 
     Set<OsmElement> elements = oxp.query().relations().members().elements().go();
     Assert.assertEquals(2, elements.size());
+  }
+
+  @Test
+  public void testInBounds()
+  {
+    Set<OsmElement> res = oxp.query().spatials().inBounds(new BoundingBox(0, 1.5d, 0, 1.5d)).go();
+    Assert.assertEquals(2, res.size());
   }
 }

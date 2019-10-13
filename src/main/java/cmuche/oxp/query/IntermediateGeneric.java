@@ -1,10 +1,7 @@
 package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
-import cmuche.oxp.entities.Node;
-import cmuche.oxp.entities.OsmElement;
-import cmuche.oxp.entities.Relation;
-import cmuche.oxp.entities.Way;
+import cmuche.oxp.entities.*;
 
 import java.util.stream.Stream;
 
@@ -36,16 +33,10 @@ public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateT
     return this;
   }
 
-  public IntermediateWay<Way> ways()
+  public IntermediateSpatial<Spatial> spatials()
   {
-    Stream stream = currentElements.filter(x -> x instanceof Way);
-    return new IntermediateWay(oxp, stream);
-  }
-
-  public IntermediateNode<Node> nodes()
-  {
-    Stream stream = currentElements.filter(x -> x instanceof Node);
-    return new IntermediateNode(oxp, stream);
+    Stream stream = currentElements.filter(x -> x instanceof Spatial);
+    return new IntermediateSpatial(oxp, stream);
   }
 
   public IntermediateRelation<Relation> relations()

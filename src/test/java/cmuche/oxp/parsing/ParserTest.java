@@ -2,7 +2,6 @@ package cmuche.oxp.parsing;
 
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.*;
-import cmuche.oxp.parsing.OxpParser;
 import lombok.SneakyThrows;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;

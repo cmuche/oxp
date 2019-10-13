@@ -1,7 +1,9 @@
 package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
+import cmuche.oxp.entities.Node;
 import cmuche.oxp.entities.OsmElement;
+import cmuche.oxp.entities.Way;
 
 import java.util.stream.Stream;
 
@@ -31,5 +33,17 @@ public abstract class FindIntermediateTaggable<T extends OsmElement> extends Fin
   public void getHasTag(String key)
   {
     currentElements = currentElements.filter(x -> x.getTags().hasKey(key));
+  }
+
+  public IntermediateWay<Way> ways()
+  {
+    Stream stream = currentElements.filter(x -> x instanceof Way);
+    return new IntermediateWay(oxp, stream);
+  }
+
+  public IntermediateNode<Node> nodes()
+  {
+    Stream stream = currentElements.filter(x -> x instanceof Node);
+    return new IntermediateNode(oxp, stream);
   }
 }
