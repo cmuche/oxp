@@ -20,16 +20,16 @@ public abstract class FindIntermediateTaggable<T extends OsmElement> extends Fin
 
   protected void getTagValueIs(String key, String value)
   {
-    currentElements = currentElements.filter(x -> ((OsmElement) x).getTags().hasKey(key) && ((OsmElement) x).getTags().get(key).equals(value));
+    currentElements = currentElements.filter(x -> x.getTags().hasKey(key) && x.getTags().get(key).equals(value));
   }
 
   protected void getTagValueIsNot(String key, String value)
   {
-    currentElements = currentElements.filter(x -> ((OsmElement) x).getTags().hasKey(key) && !((OsmElement) x).getTags().get(key).equals(value));
+    currentElements = currentElements.filter(x -> x.getTags().hasKey(key) && !x.getTags().get(key).equals(value));
   }
 
   public void getHasTag(String key)
   {
-    currentElements = currentElements.filter(x -> ((OsmElement) x).getTags().hasKey(key));
+    currentElements = currentElements.filter(x -> x.getTags().hasKey(key));
   }
 }

@@ -35,7 +35,7 @@ public class IntermediateWay<T extends Way> extends FindIntermediateTaggable<T>
 
   public IntermediateWay<T> isArea()
   {
-    currentElements = currentElements.filter(x -> ((Way) x).isArea());
+    currentElements = currentElements.filter(x -> x.isArea());
     return this;
   }
 }
