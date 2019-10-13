@@ -14,4 +14,10 @@ public class Node extends Spatial
     super(id);
     this.coordinate = coordinate;
   }
+
+  @Override
+  public BoundingBox getBoundingBox()
+  {
+    return new BoundingBox(coordinate.getLat(), coordinate.getLat(), coordinate.getLon(), coordinate.getLon());
+  }
 }

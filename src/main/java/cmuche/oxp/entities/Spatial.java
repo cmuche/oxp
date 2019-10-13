@@ -1,9 +1,11 @@
 package cmuche.oxp.entities;
 
-public class Spatial extends OsmElement
+public abstract class Spatial extends OsmElement
 {
   public Spatial(Id id)
   {
     super(id);
   }
+
+  public abstract BoundingBox getBoundingBox();
 }

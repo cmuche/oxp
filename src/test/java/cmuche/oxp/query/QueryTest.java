@@ -1,5 +1,6 @@
-package cmuche.oxp;
+package cmuche.oxp.query;
 
+import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
@@ -8,7 +9,7 @@ import org.junit.Test;
 
 import java.util.Set;
 
-public class FindTest
+public class QueryTest
 {
 
   private Oxp oxp;
