@@ -4,7 +4,7 @@
 - Offers a powerful API to search for specific OSM data types, tags or features
 
 ```
-Osm oxp = OxpParser.parseOsmFile(new File("map.oxp"));
+Oxp oxp = OxpParser.parseOsmFile(new File("map.osm"));
     
 // Find all ways that create an area
 Set<Way> allAreas = oxp.query().ways().isArea().go();
