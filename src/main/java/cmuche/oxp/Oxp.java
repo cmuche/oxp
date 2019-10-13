@@ -39,12 +39,12 @@ public class Oxp
     return new IntermediateGeneric<>(this, stream);
   }
 
-  public IntermediateGeneric<OsmElement> queryFrom(Collection<Way> scopeElements)
+  public IntermediateGeneric<OsmElement> queryFrom(Collection<OsmElement> scopeElements)
   {
     return new IntermediateGeneric<>(this, scopeElements.stream());
   }
 
-  public IntermediateNode<Node> queryFromNodes(Collection<Way> scopeElements)
+  public IntermediateNode<Node> queryFromNodes(Collection<Node> scopeElements)
   {
     return new IntermediateNode<>(this, scopeElements.stream());
   }
