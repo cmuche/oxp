@@ -21,4 +21,9 @@ public abstract class FindIntermediate<T extends Object>
   {
     return currentElements.collect(Collectors.toSet());
   }
+
+  public Stream<T> goAsStream()
+  {
+    return currentElements;
+  }
 }
