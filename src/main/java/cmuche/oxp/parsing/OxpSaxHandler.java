@@ -108,7 +108,9 @@ public class OxpSaxHandler extends DefaultHandler
     }
     else if ("way".equals(qName))
     {
-      oxp.getWays().add(current(Way.class));
+      Way currentWay = current(Way.class);
+      currentWay.recalculateBoundingBox();
+      oxp.getWays().add(currentWay);
       processedElement();
     }
     else if ("relation".equals(qName))
