@@ -21,9 +21,9 @@ public class Relation extends OsmElement
   @Override
   public BoundingBox getBoundingBox()
   {
-    Set<BoundingBox> bbox = members.stream().map(x->x.getElement().getBoundingBox()).collect(Collectors.toSet());
+    Set<BoundingBox> bbox = members.stream().map(x -> x.getElement().getBoundingBox()).filter(x -> x != null).collect(Collectors.toSet());
 
-    if(bbox.isEmpty())
+    if (bbox.isEmpty())
       return null;
 
     double minLat = bbox.stream().map(x -> x.getLatMin()).min(Double::compareTo).get();
