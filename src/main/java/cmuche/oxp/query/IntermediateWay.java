@@ -6,7 +6,7 @@ import cmuche.oxp.entities.Way;
 
 import java.util.stream.Stream;
 
-public class IntermediateWay<T extends Way> extends FindIntermediateTaggable<T>
+public class IntermediateWay<T extends Way> extends FindIntermediateOsm<T>
 {
   public IntermediateWay(Oxp oxp, Stream currentElements)
   {

@@ -5,7 +5,7 @@ import cmuche.oxp.entities.*;
 
 import java.util.stream.Stream;
 
-public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateTaggable<T>
+public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateOsm<T>
 {
   public IntermediateGeneric(Oxp oxp, Stream currentElements)
   {

@@ -6,9 +6,9 @@ import cmuche.oxp.entities.OsmElement;
 
 import java.util.stream.Stream;
 
-public abstract class FindIntermediateTaggable<T extends OsmElement> extends FindIntermediate<T>
+public abstract class FindIntermediateOsm<T extends OsmElement> extends FindIntermediate<T>
 {
-  public FindIntermediateTaggable(Oxp oxp, Stream currentElements)
+  public FindIntermediateOsm(Oxp oxp, Stream currentElements)
   {
     super(oxp, currentElements);
   }
