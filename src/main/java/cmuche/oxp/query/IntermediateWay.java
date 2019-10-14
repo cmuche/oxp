@@ -1,6 +1,7 @@
 package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
+import cmuche.oxp.entities.BoundingBox;
 import cmuche.oxp.entities.Way;
 
 import java.util.stream.Stream;
@@ -36,6 +37,13 @@ public class IntermediateWay<T extends Way> extends FindIntermediateTaggable<T>
   public IntermediateWay<T> isArea()
   {
     currentElements = currentElements.filter(x -> x.isArea());
+    return this;
+  }
+
+  @Override
+  public IntermediateWay<T> inBounds(BoundingBox boundingBox)
+  {
+    getInBounds(boundingBox);
     return this;
   }
 }

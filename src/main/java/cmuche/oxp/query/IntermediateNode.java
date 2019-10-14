@@ -2,6 +2,7 @@ package cmuche.oxp.query;
 
 
 import cmuche.oxp.Oxp;
+import cmuche.oxp.entities.BoundingBox;
 import cmuche.oxp.entities.Node;
 
 import java.util.stream.Stream;
@@ -34,4 +35,10 @@ public class IntermediateNode<T extends Node> extends FindIntermediateTaggable<T
     return this;
   }
 
+  @Override
+  public IntermediateNode<T> inBounds(BoundingBox boundingBox)
+  {
+    getInBounds(boundingBox);
+    return this;
+  }
 }

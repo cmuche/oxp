@@ -18,4 +18,6 @@ public abstract class OsmElement
     this.id = id;
     this.tags = new TagCollection();
   }
+
+  public abstract BoundingBox getBoundingBox();
 }

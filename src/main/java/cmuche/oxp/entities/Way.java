@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class Way extends Spatial
+public class Way extends OsmElement
 {
   @Getter
   private List<Node> nodes;

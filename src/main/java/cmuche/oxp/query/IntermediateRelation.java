@@ -1,6 +1,7 @@
 package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
+import cmuche.oxp.entities.BoundingBox;
 import cmuche.oxp.entities.Member;
 import cmuche.oxp.entities.Relation;
 
@@ -38,5 +39,12 @@ public class IntermediateRelation<T extends Relation> extends FindIntermediateTa
   {
     Stream<Member> stream = currentElements.flatMap(x -> x.getMembers().stream());
     return new IntermediateMember<>(oxp, stream);
+  }
+
+  @Override
+  public IntermediateRelation<T> inBounds(BoundingBox boundingBox)
+  {
+    getInBounds(boundingBox);
+    return this;
   }
 }

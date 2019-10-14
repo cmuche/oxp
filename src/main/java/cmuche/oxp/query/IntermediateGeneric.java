@@ -1,10 +1,7 @@
 package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
-import cmuche.oxp.entities.Node;
-import cmuche.oxp.entities.OsmElement;
-import cmuche.oxp.entities.Relation;
-import cmuche.oxp.entities.Way;
+import cmuche.oxp.entities.*;
 
 import java.util.stream.Stream;
 
@@ -52,5 +49,12 @@ public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateT
   {
     Stream stream = currentElements.filter(x -> x instanceof Relation);
     return new IntermediateRelation(oxp, stream);
+  }
+
+  @Override
+  public IntermediateGeneric<T> inBounds(BoundingBox boundingBox)
+  {
+    getInBounds(boundingBox);
+    return this;
   }
 }
