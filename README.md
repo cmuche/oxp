@@ -1,8 +1,11 @@
 # OpenStreetMap XML Parser
+
+## Features
 - Parses OSM XML files (or any other OSM XML input) and offers an easy to use interface for the basic element types (nodes, ways, relations).
 - Stores the data efficiently in memory, no database required
 - Offers a powerful API to search for specific OSM data types, tags or features
 
+## Examples
 ```
 Oxp oxp = OxpParser.parseOsmFile(new File("map.osm"));
     
