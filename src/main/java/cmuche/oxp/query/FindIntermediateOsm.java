@@ -3,6 +3,7 @@ package cmuche.oxp.query;
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.BoundingBox;
 import cmuche.oxp.entities.OsmElement;
+import cmuche.oxp.tagmatch.TagCondition;
 
 import java.util.stream.Stream;
 
@@ -13,27 +14,13 @@ public abstract class FindIntermediateOsm<T extends OsmElement> extends FindInte
     super(oxp, currentElements);
   }
 
-  public abstract FindIntermediate<T> tagValueIs(String key, String value);
-
-  public abstract FindIntermediate<T> tagValueIsNot(String key, String value);
-
-  public abstract FindIntermediate<T> hasTag(String key);
+  public abstract FindIntermediate<T> tagsMatch(TagCondition condition);
 
   public abstract FindIntermediate<T> inBounds(BoundingBox bbox);
 
-  protected void getTagValueIs(String key, String value)
+  protected void getTagsMatch(TagCondition condition)
   {
-    currentElements = currentElements.filter(x -> x.getTags().hasKey(key) && x.getTags().get(key).equals(value));
-  }
-
-  protected void getTagValueIsNot(String key, String value)
-  {
-    currentElements = currentElements.filter(x -> x.getTags().hasKey(key) && !x.getTags().get(key).equals(value));
-  }
-
-  protected void getHasTag(String key)
-  {
-    currentElements = currentElements.filter(x -> x.getTags().hasKey(key));
+    currentElements = currentElements.filter(x -> condition.matches(x.getTags()));
   }
 
   protected void getInBounds(BoundingBox bbox)

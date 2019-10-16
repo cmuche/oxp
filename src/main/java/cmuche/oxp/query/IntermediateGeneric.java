@@ -2,6 +2,7 @@ package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.*;
+import cmuche.oxp.tagmatch.TagCondition;
 
 import java.util.stream.Stream;
 
@@ -13,23 +14,9 @@ public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateO
   }
 
   @Override
-  public IntermediateGeneric<T> tagValueIs(String key, String value)
+  public IntermediateGeneric<T> tagsMatch(TagCondition condition)
   {
-    getTagValueIs(key, value);
-    return this;
-  }
-
-  @Override
-  public IntermediateGeneric<T> tagValueIsNot(String key, String value)
-  {
-    getTagValueIsNot(key, value);
-    return this;
-  }
-
-  @Override
-  public IntermediateGeneric<T> hasTag(String key)
-  {
-    getHasTag(key);
+    getTagsMatch(condition);
     return this;
   }
 

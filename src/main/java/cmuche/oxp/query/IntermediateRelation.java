@@ -4,6 +4,7 @@ import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.BoundingBox;
 import cmuche.oxp.entities.Member;
 import cmuche.oxp.entities.Relation;
+import cmuche.oxp.tagmatch.TagCondition;
 
 import java.util.stream.Stream;
 
@@ -15,23 +16,9 @@ public class IntermediateRelation<T extends Relation> extends FindIntermediateOs
   }
 
   @Override
-  public IntermediateRelation<T> tagValueIs(String key, String value)
+  public IntermediateRelation<T> tagsMatch(TagCondition condition)
   {
-    getTagValueIs(key, value);
-    return this;
-  }
-
-  @Override
-  public IntermediateRelation<T> tagValueIsNot(String key, String value)
-  {
-    getTagValueIsNot(key, value);
-    return this;
-  }
-
-  @Override
-  public IntermediateRelation<T> hasTag(String key)
-  {
-    getHasTag(key);
+    getTagsMatch(condition);
     return this;
   }
 

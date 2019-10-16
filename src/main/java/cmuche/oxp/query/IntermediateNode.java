@@ -4,6 +4,7 @@ package cmuche.oxp.query;
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.BoundingBox;
 import cmuche.oxp.entities.Node;
+import cmuche.oxp.tagmatch.TagCondition;
 
 import java.util.stream.Stream;
 
@@ -15,23 +16,9 @@ public class IntermediateNode<T extends Node> extends FindIntermediateOsm<T>
   }
 
   @Override
-  public IntermediateNode<T> tagValueIs(String key, String value)
+  public IntermediateNode<T> tagsMatch(TagCondition condition)
   {
-    getTagValueIs(key, value);
-    return this;
-  }
-
-  @Override
-  public IntermediateNode<T> tagValueIsNot(String key, String value)
-  {
-    getTagValueIsNot(key, value);
-    return this;
-  }
-
-  @Override
-  public IntermediateNode<T> hasTag(String key)
-  {
-    getHasTag(key);
+    getTagsMatch(condition);
     return this;
   }
 

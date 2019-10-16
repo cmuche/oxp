@@ -2,6 +2,7 @@ package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.*;
+import cmuche.oxp.tagmatch.TagMatch;
 import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -75,16 +76,16 @@ public class QueryTest
   @Test
   public void testHasTag()
   {
-    Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getNodes(), oxp.query().hasTag("n").go()));
-    Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getWays(), oxp.query().hasTag("w").go()));
-    Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getRelations(), oxp.query().hasTag("r").go()));
+    Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getNodes(), oxp.query().tagsMatch(TagMatch.hasTag("n")).go()));
+    Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getWays(), oxp.query().tagsMatch(TagMatch.hasTag("w")).go()));
+    Assert.assertTrue(CollectionUtils.isEqualCollection(oxp.getRelations(), oxp.query().tagsMatch(TagMatch.hasTag("r")).go()));
   }
 
   @Test
   public void testTagValue()
   {
-    Set<OsmElement> resTrue = oxp.query().tagValueIs("n", "2").go();
-    Set<OsmElement> resFalse = oxp.query().tagValueIsNot("n", "2").go();
+    Set<Node> resTrue = oxp.query().nodes().tagsMatch(TagMatch.tagValueIs("n", "2")).go();
+    Set<Node> resFalse = oxp.query().nodes().tagsMatch(TagMatch.tagValueIsNot("n", "2")).go();
 
     Assert.assertEquals(1, resTrue.size());
     Assert.assertEquals(oxp.getNodes().size() - 1, resFalse.size());
