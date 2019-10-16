@@ -28,6 +28,7 @@ public class SpatialTest
     Way w = new Way(new Id(ElementType.Way, "1"));
     w.getNodes().add(n1);
     w.getNodes().add(n2);
+    w.recalculateBoundingBox();
 
     BoundingBox bbox = w.getBoundingBox();
     Assert.assertEquals(1d, bbox.getLatMin(), 0);
