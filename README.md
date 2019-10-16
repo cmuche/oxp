@@ -29,7 +29,7 @@ Set<OsmElement> stops = oxp.query()
         .tagsMatch(TagMatch.tagValueIs("highway", "bus_stop")).go();
 
 // Find all elements which have an address with an even housenumber (Custom Tag Condition)
-Set<OsmElement> evenHousenumebrs = oxp.query().tagsMatch(tagCollection ->
+Set<OsmElement> evenHousenumbers = oxp.query().tagsMatch(tagCollection ->
     {
       try
       {
