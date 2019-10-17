@@ -5,36 +5,36 @@ import lombok.NonNull;
 
 public class TagMatch
 {
-  public static TagCondition hasTag(@NonNull String tag)
+  public static BaseCondition hasTag(@NonNull String tag)
   {
-    return tagCollection -> tagCollection.get(tag) != null;
+    return BaseCondition.of(tagCollection -> tagCollection.hasKey(tag));
   }
 
-  public static TagCondition hasNotTag(@NonNull String tag)
+  public static BaseCondition hasNotTag(@NonNull String tag)
   {
-    return tagCollection -> tagCollection.get(tag) == null;
+    return BaseCondition.of(tagCollection -> !tagCollection.hasKey(tag));
   }
 
-  public static TagCondition tagValueIs(@NonNull String tag, @NonNull String value)
+  public static BaseCondition tagValueIs(@NonNull String tag, @NonNull String value)
   {
-    return tagCollection ->
+    return BaseCondition.of(tagCollection ->
     {
       String currentValue = tagCollection.get(tag);
       if (currentValue == null)
         return false;
       return currentValue.equals(value);
-    };
+    });
   }
 
-  public static TagCondition tagValueIsNot(@NonNull String tag, @NonNull String value)
+  public static BaseCondition tagValueIsNot(@NonNull String tag, @NonNull String value)
   {
-    return tagCollection ->
+    return BaseCondition.of(tagCollection ->
     {
       String currentValue = tagCollection.get(tag);
       if (currentValue == null)
         return true;
       return !currentValue.equals(value);
-    };
+    });
   }
 
   public static BooleanCondition or(TagCondition cond1, TagCondition cond2)
