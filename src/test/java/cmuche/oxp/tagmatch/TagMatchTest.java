@@ -62,4 +62,25 @@ public class TagMatchTest
     assertMatchFalse(TagMatch.and(TagMatch.hasTag("k1"), TagMatch.hasTag("xx")));
     assertMatchFalse(TagMatch.and(TagMatch.hasTag("xx"), TagMatch.hasTag("yy")));
   }
+
+  @Test
+  public void testAny()
+  {
+    assertMatchTrue(TagMatch.any());
+    assertMatchTrue(TagMatch.any(TagMatch.hasTag("k1")));
+    assertMatchTrue(TagMatch.any(TagMatch.hasTag("k1"), TagMatch.hasTag("k2")));
+    assertMatchTrue(TagMatch.any(TagMatch.hasTag("k1"), TagMatch.hasTag("xx")));
+    assertMatchFalse(TagMatch.any(TagMatch.hasTag("xx"), TagMatch.hasTag("yy")));
+  }
+
+  @Test
+  public void testAll()
+  {
+    assertMatchTrue(TagMatch.all());
+    assertMatchTrue(TagMatch.all(TagMatch.hasTag("k1")));
+    assertMatchTrue(TagMatch.all(TagMatch.hasTag("k1"), TagMatch.hasTag("k2")));
+    assertMatchFalse(TagMatch.all(TagMatch.hasTag("k1"), TagMatch.hasTag("xx")));
+    assertMatchFalse(TagMatch.all(TagMatch.hasTag("xx"), TagMatch.hasTag("k1")));
+    assertMatchFalse(TagMatch.all(TagMatch.hasTag("xx"), TagMatch.hasTag("yy")));
+  }
 }

@@ -1,8 +1,6 @@
 package cmuche.oxp.tagmatch;
 
-import cmuche.oxp.tagmatch.conditions.bool.AndCondition;
-import cmuche.oxp.tagmatch.conditions.bool.BooleanCondition;
-import cmuche.oxp.tagmatch.conditions.bool.OrCondition;
+import cmuche.oxp.tagmatch.conditions.bool.*;
 import lombok.NonNull;
 
 public class TagMatch
@@ -47,5 +45,15 @@ public class TagMatch
   public static BooleanCondition and(TagCondition cond1, TagCondition cond2)
   {
     return new AndCondition(cond1, cond2);
+  }
+
+  public static ListCondition any(TagCondition... conditions)
+  {
+    return new AnyCondition(conditions);
+  }
+
+  public static ListCondition all(TagCondition... conditions)
+  {
+    return new AllCondition(conditions);
   }
 }
