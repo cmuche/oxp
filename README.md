@@ -36,8 +36,8 @@ Set<OsmElement> evenHousenumbers = oxp.query().tagsMatch(tagCollection ->
     {
       try
       {
-        Integer hn = tagCollection.getInt("addr:housenumber");
-        return hn != null && hn % 2 == 0;
+        Optional<Integer> hn = tagCollection.getInt("addr:housenumber");
+        return hn.isPresent() && hn.get() % 2 == 0;
       }
       catch (Exception ex)
       {
