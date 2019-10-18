@@ -31,4 +31,16 @@ public class TagCollection
   {
     return map.containsKey(key);
   }
+
+  public Integer getInt(String key)
+  {
+    try
+    {
+      return Integer.valueOf(get(key));
+    }
+    catch (Exception ex)
+    {
+      return null;
+    }
+  }
 }
