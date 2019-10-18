@@ -34,7 +34,12 @@ public class TagCollectionTest
   public void testTypes()
   {
     Assert.assertEquals(42, (int) tagCollection.getInt("i1").get());
+    Assert.assertEquals(13.37, tagCollection.getFloat("f1").get(), 0.0001f);
+    Assert.assertEquals(42f, tagCollection.getFloat("i1").get(), 0.0001f);
     Assert.assertFalse(tagCollection.getInt("s1").isPresent());
     Assert.assertFalse(tagCollection.getInt("f1").isPresent());
+    Assert.assertFalse(tagCollection.getInt("xx").isPresent());
+    Assert.assertFalse(tagCollection.getFloat("s1").isPresent());
+    Assert.assertFalse(tagCollection.getFloat("xx").isPresent());
   }
 }

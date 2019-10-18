@@ -44,4 +44,16 @@ public class TagCollection
       return Optional.empty();
     }
   }
+
+  public Optional<Float> getFloat(String key)
+  {
+    try
+    {
+      return Optional.of(Float.valueOf(get(key)));
+    }
+    catch (Exception ex)
+    {
+      return Optional.empty();
+    }
+  }
 }
