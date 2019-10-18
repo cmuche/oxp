@@ -2,6 +2,7 @@ package cmuche.oxp.entities;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class TagCollection
 {
@@ -32,15 +33,15 @@ public class TagCollection
     return map.containsKey(key);
   }
 
-  public Integer getInt(String key)
+  public Optional<Integer> getInt(String key)
   {
     try
     {
-      return Integer.valueOf(get(key));
+      return Optional.of(Integer.valueOf(get(key)));
     }
     catch (Exception ex)
     {
-      return null;
+      return Optional.empty();
     }
   }
 }

@@ -33,6 +33,8 @@ public class TagCollectionTest
   @Test
   public void testTypes()
   {
-
+    Assert.assertEquals(42, (int) tagCollection.getInt("i1").get());
+    Assert.assertFalse(tagCollection.getInt("s1").isPresent());
+    Assert.assertFalse(tagCollection.getInt("f1").isPresent());
   }
 }
