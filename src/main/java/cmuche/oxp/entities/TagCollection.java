@@ -1,11 +1,16 @@
 package cmuche.oxp.entities;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class TagCollection
 {
+  private final static String groupSeparator = ":";
+  
   private Map<String, String> map;
 
   public TagCollection()
@@ -33,6 +38,11 @@ public class TagCollection
     return map.containsKey(key);
   }
 
+  public int size()
+  {
+    return map.size();
+  }
+
   public Optional<Integer> getInt(String key)
   {
     try
@@ -56,4 +66,26 @@ public class TagCollection
       return Optional.empty();
     }
   }
+
+  public TagCollection getGroup(String str)
+  {
+    TagCollection subCollection = new TagCollection();
+    map.keySet().forEach(x ->
+    {
+      String[] parts = StringUtils.split(x, groupSeparator);
+      if (parts.length < 2)
+        return;
+
+      if (parts[0].equals(str))
+      {
+        String[] remainingParts = Arrays.copyOfRange(parts, 1, parts.length);
+        String thisKey = StringUtils.join(remainingParts, groupSeparator);
+        subCollection.set(thisKey, get(x));
+      }
+
+    });
+
+    return subCollection;
+  }
+
 }
