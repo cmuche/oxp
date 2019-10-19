@@ -1,5 +1,4 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.cmuche/oxp/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.cmuche/oxp)
-
+[![Maven Central](https://img.shields.io/maven-central/v/de.cmuche/oxp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22de.cmuche%22%20AND%20a:%22oxp%22)
 
 # OpenStreetMap XML Parser
 
