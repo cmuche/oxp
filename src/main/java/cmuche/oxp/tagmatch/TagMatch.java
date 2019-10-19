@@ -26,6 +26,26 @@ public class TagMatch
     });
   }
 
+  public static AnyCondition tagValueIsAny(@NonNull String tag, @NonNull String... values)
+  {
+    TagCondition[] conditions = new TagCondition[values.length];
+    for (int i = 0; i < values.length; i++)
+      conditions[i] = tagValueIs(tag, values[i]);
+
+    return new AnyCondition(conditions);
+  }
+
+  public static BaseCondition tagValueContains(@NonNull String tag, @NonNull String value)
+  {
+    return BaseCondition.of(tagCollection ->
+    {
+      String currentValue = tagCollection.get(tag);
+      if (currentValue == null)
+        return false;
+      return currentValue.contains(value);
+    });
+  }
+
   public static BaseCondition tagValueIsNot(@NonNull String tag, @NonNull String value)
   {
     return BaseCondition.of(tagCollection ->
