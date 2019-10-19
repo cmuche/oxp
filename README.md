@@ -1,9 +1,21 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.cmuche/oxp/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.cmuche/oxp)
+
+
 # OpenStreetMap XML Parser
 
 ## Features
 - Parses OSM XML files (or any other OSM XML input) and offers an easy to use interface for the basic element types (nodes, ways, relations).
 - Stores the data efficiently in memory, no database required
 - Offers a powerful API to search for specific OSM data types, tags or features
+
+## Maven
+```
+<dependency>
+  <groupId>de.cmuche</groupId>
+  <artifactId>oxp</artifactId>
+  <version>1.0</version>
+</dependency>
+```
 
 ## Examples
 ```
