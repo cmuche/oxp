@@ -13,6 +13,20 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <developers>
+        <developer>
+            <name>Christoph Muche</name>
+            <email>dev@cmuche.de</email>
+            <organizationUrl>https://github.com/cmuche</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/cmuche/oxp.git</connection>
+        <developerConnection>scm:git:ssh://github.com:cmuche/oxp.git</developerConnection>
+        <url>http://github.com/cmuche/oxp/tree/master</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
@@ -25,6 +39,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://raw.githubusercontent.com/cmuche/oxp/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <dependencies>
         <dependency>
