@@ -4,9 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <name>OXP</name>
+    <description>OpenStreetMap XML parser with in-memory query API</description>
+    <url>https://github.com/cmuche/oxp</url>
+
     <groupId>de.cmuche</groupId>
     <artifactId>oxp</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
+
     <build>
         <plugins>
             <plugin>
