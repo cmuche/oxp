@@ -1,5 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/de.cmuche/oxp.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22de.cmuche%22%20AND%20a:%22oxp%22)
-![Build Status](https://cmuche.de/dev/oxp_build_status.php)
+![Build Status](https://cmuche.de/dev/jnk_build_status.php?job=oxp)
 
 # OpenStreetMap XML Parser
 
