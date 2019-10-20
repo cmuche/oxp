@@ -13,14 +13,64 @@
 <dependency>
   <groupId>de.cmuche</groupId>
   <artifactId>oxp</artifactId>
-  <version>1.0</version>
+  <version>1.1</version>
 </dependency>
 ```
 
-## Examples
+## Usage
+
+### Parsing
 ```
+// From file
 Oxp oxp = OxpParser.parseOsmFile(new File("map.osm"));
-    
+
+// From String
+Oxp oxp = OxpParser.parseOsmFile("...");
+
+// From Stream
+Oxp oxp = OxpParser.parseOsmStream(...);
+```
+
+### Queries
+
+With the ```oxp.query()``` method you can chain element filters which are applied to the elements stored in the OXP object.
+The ```.go()``` method returns a set which holds the query results. There are some useful example queries in the 'Examples' section.
+
+#### Scopes
+Filters inside a query are scoped. This means some filters return elements of a specific type or can only be applied on filter results of a specific type (e.g. the ```isArea()``` filter can only be applied on ways).
+Filters which can return multiple element types can be type-filtered: For example ```oxp.query().ways()``` and following filters returns are way-scoped.
+
+##### All elements
+Since all OSM elements can have tags, tag filters are applicable on all filter types. Also bounding box related filters are possible on all types.
+
+```
+oxp.query().tagsMatch(TagMatcher.hasTag("man_made")).go();
+oxp.query().inBounds(new BoundingBox(52.02184, 52.02476, 8.52949, 8.53792)).go();
+```
+
+##### Nodes
+...
+
+##### Ways
+...
+
+##### Relations and Members
+...
+
+Query results can also be reused and filtered again:
+```
+oxp.queryFrom(elements)
+oxp.queryFrom(nodes)
+oxp.queryFrom(ways)
+oxp.queryFrom(relations)
+```
+
+### Tag Matchers and Conditions
+...
+
+## Examples
+
+```    
 // Find all ways that create an area
 Set<Way> allAreas = oxp.query()
         .ways()
