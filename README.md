@@ -31,6 +31,50 @@ Oxp oxp = OxpParser.parseOsmFile("...");
 Oxp oxp = OxpParser.parseOsmStream(...);
 ```
 
+### Methods
+
+#### Data
+The parsed elements can be accessed via...
+```
+oxp.getNodes();
+oxp.getWays();
+oxp.getRelations();
+```
+
+#### Tags
+Every OSM element has a collection of tags which can be accessed via ```element.getTags()```. 
+It provides basic get/set functionality:
+
+```
+TagCollection tagCollection = node.getTags();
+tagCollection.get("amenity");
+tagCollection.getInt("ref");
+tagCollection.getFloat("height");
+```
+
+##### Groups
+The ```tagCollection.group(...)``` method returns a subcollection which only includes tags which match the given prefix.
+
+```
+group = tagCollection.group("addr")
+
+// tagCollection: ["addr:street" -> "Foostreet", "addr:housenumber" -> "42"]
+// group:         [     "street" -> "Foostreet",      "housenumber" -> "42"]
+```
+
+#### Ways
+- ```way.getNodes()``` returns an ordered list of nodes
+- ```way.isArea()``` checks if the first node equals the last node
+
+#### Relations
+...
+
+#### Spatial
+##### Coordinates
+...
+##### Bounding Boxes
+...
+
 ### Queries
 
 With the ```oxp.query()``` method you can chain element filters which are applied to the elements stored in the OXP object.
@@ -104,3 +148,8 @@ Set<OsmElement> evenHousenumbers = oxp.query().tagsMatch(tagCollection ->
       return hn.isPresent() && hn.get() % 2 == 0;
     }).go();
 ```
+
+## Roadmap / TODO
+- Slippy Map Tile calculations
+- Relations shape merging
+- Boolean tag values
