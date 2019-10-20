@@ -139,7 +139,7 @@ Set<OsmElement> stops = oxp.query()
 // Find all elements which have an address with an even housenumber (Custom Tag Condition)
 Set<OsmElement> evenHousenumbers = oxp.query().tagsMatch(tagCollection ->
     {
-      Optional<Integer> hn = tagCollection.getInt("addr:housenumber");
+      Optional<Integer> hn = tagCollection.getGroup("addr").getInt("housenumber");
       return hn.isPresent() && hn.get() % 2 == 0;
     }).go();
 ```
