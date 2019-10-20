@@ -38,7 +38,7 @@ The ```.go()``` method returns a set which holds the query results. There are so
 
 #### Scopes
 Filters inside a query are scoped. This means some filters return elements of a specific type or can only be applied on filter results of a specific type (e.g. the ```isArea()``` filter can only be applied on ways).
-Filters which can return multiple element types can be type-filtered: For example ```oxp.query().ways()``` and following filters returns are way-scoped.
+Filters which can return multiple element types can be type-filtered: For example ```oxp.query().ways()``` and following filter results are way-scoped.
 
 ##### All elements
 Since all OSM elements can have tags, tag filters are applicable on all filter types. Also bounding box related filters are possible on all types.
