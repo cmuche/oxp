@@ -9,4 +9,10 @@ public class Id
 {
   private ElementType type;
   private String id;
+
+  @Override
+  public String toString()
+  {
+    return type.toString().toUpperCase() + "-" + id;
+  }
 }

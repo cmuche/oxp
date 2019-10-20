@@ -88,4 +88,9 @@ public class TagCollection
     return subCollection;
   }
 
+  @Override
+  public String toString()
+  {
+    return map.toString();
+  }
 }

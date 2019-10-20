@@ -19,6 +19,12 @@ public abstract class OsmElement
     this.tags = new TagCollection();
   }
 
+  @Override
+  public String toString()
+  {
+    return id.toString();
+  }
+
   public abstract BoundingBox getBoundingBox();
 
   public Coordinate getCenter()
