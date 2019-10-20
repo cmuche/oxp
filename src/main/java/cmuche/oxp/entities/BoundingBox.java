@@ -1,9 +1,13 @@
 package cmuche.oxp.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class BoundingBox
 {
   @Getter
