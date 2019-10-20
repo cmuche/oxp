@@ -6,6 +6,18 @@ import org.junit.Test;
 
 public class SpatialTest
 {
+  private Way getTestWay()
+  {
+    Node n1 = new Node(new Id(ElementType.Node, "1"), new Coordinate(1d, 2d));
+    Node n2 = new Node(new Id(ElementType.Node, "2"), new Coordinate(3d, 4d));
+    Way w = new Way(new Id(ElementType.Way, "1"));
+    w.getNodes().add(n1);
+    w.getNodes().add(n2);
+    w.recalculateBoundingBox();
+
+    return w;
+  }
+
 
   @Test
   public void testDistance()
@@ -21,14 +33,17 @@ public class SpatialTest
   }
 
   @Test
+  public void testCenter()
+  {
+    Way w = getTestWay();
+
+    Assert.assertEquals(new Coordinate(2d, 3d), w.getCenter());
+  }
+
+  @Test
   public void testWayBoundingBox()
   {
-    Node n1 = new Node(new Id(ElementType.Node, "1"), new Coordinate(1d, 2d));
-    Node n2 = new Node(new Id(ElementType.Node, "1"), new Coordinate(3d, 4d));
-    Way w = new Way(new Id(ElementType.Way, "1"));
-    w.getNodes().add(n1);
-    w.getNodes().add(n2);
-    w.recalculateBoundingBox();
+    Way w = getTestWay();
 
     BoundingBox bbox = w.getBoundingBox();
     Assert.assertEquals(1d, bbox.getLatMin(), 0);
