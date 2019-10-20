@@ -57,6 +57,7 @@ oxp.query().inBounds(new BoundingBox(52.02184, 52.02476, 8.52949, 8.53792)).go()
 ##### Relations and Members
 ...
 
+#### Reusing
 Query results can also be reused and filtered again:
 ```
 oxp.queryFrom(elements)
