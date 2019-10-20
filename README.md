@@ -21,20 +21,15 @@
 
 ### Parsing
 ```
-// From file
 Oxp oxp = OxpParser.parseOsmFile(new File("map.osm"));
-
-// From string
-Oxp oxp = OxpParser.parseOsmFile("...");
-
-// From stream
-Oxp oxp = OxpParser.parseOsmStream(...);
+Oxp oxp = OxpParser.parseOsmXml("<osm><...");
+Oxp oxp = OxpParser.parseOsmStream(inputStream);
 ```
 
 ### Methods
 
 #### Data
-The parsed elements can be accessed via...
+The parsed elements can be accessed via:
 ```
 oxp.getNodes();
 oxp.getWays();
@@ -43,7 +38,7 @@ oxp.getRelations();
 
 #### Tags
 Every OSM element has a collection of tags which can be accessed via ```element.getTags()```. 
-It provides basic get/set functionality:
+It provides basic get functionality:
 
 ```
 TagCollection tagCollection = node.getTags();
@@ -53,7 +48,7 @@ tagCollection.getFloat("height");
 ```
 
 ##### Groups
-The ```tagCollection.group(...)``` method returns a subcollection which only includes tags which match the given prefix.
+The ```tagCollection.group(...)``` method returns a subcollection which only includes tags matching the given prefix.
 
 ```
 group = tagCollection.group("addr")
