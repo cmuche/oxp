@@ -24,10 +24,10 @@
 // From file
 Oxp oxp = OxpParser.parseOsmFile(new File("map.osm"));
 
-// From String
+// From string
 Oxp oxp = OxpParser.parseOsmFile("...");
 
-// From Stream
+// From stream
 Oxp oxp = OxpParser.parseOsmStream(...);
 ```
 
