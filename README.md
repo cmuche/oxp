@@ -144,7 +144,10 @@ Set<OsmElement> evenHousenumbers = oxp.query().tagsMatch(tagCollection ->
     }).go();
 ```
 
+## Tools
+### Slippy Map tiles
+...
+
 ## Roadmap / TODO
-- Slippy Map Tile calculations
 - Relations shape merging
 - Boolean tag values
