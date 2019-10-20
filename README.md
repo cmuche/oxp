@@ -80,11 +80,14 @@ Set<Way> allAreas = oxp.query()
 
 // Find all nodes or ways which represent a building
 Set<OsmElement> allBuildings = oxp.query()
-        .tagsMatch(TagMatch.and(TagMatch.tagValueIs("building", "yes"), TagMatch.hasTag("leaf_type")))
+        .tagsMatch(TagMatch.tagValueIs("building", "yes"))
         .go();
 
 // Find all trees which have their leaf type specified
-Set<Node> allTrees = oxp.query().nodes().tagsMatch(TagMatch.tagValueIs("natural", "tree")).go();
+Set<Node> allTrees = oxp.query()
+        .nodes()
+        .tagsMatch(TagMatch.and(TagMatch.tagValueIs("natural", "tree"), TagMatch.hasTag("leaf_type")))
+        .go();
 
 // Find all elements which are bus stops and are referenced in a relation which is a bus line and has the line number '36'
 Set<OsmElement> stops = oxp.query()
