@@ -1,2 +1,2 @@
 language: java
-script: mvn install -DskipTests -Dgpg.skip
+script: "mvn clean test -Dgpg.skip"
