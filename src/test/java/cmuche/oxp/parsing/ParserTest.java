@@ -27,7 +27,7 @@ public class ParserTest
 
     Node n = oxp.getNodes().stream().findFirst().get();
     Assert.assertEquals(new Id(ElementType.Node, "1"), n.getId());
-    Assert.assertEquals(n.getCoordinate(), new Coordinate(1.111, 2.222));
+    Assert.assertEquals(n.getCoordinate(), Coordinate.at(1.111, 2.222));
   }
 
   @Test

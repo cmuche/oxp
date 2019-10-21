@@ -1,26 +1,22 @@
 package cmuche.oxp.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
-import lombok.ToString;
 
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data(staticConstructor = "of")
 public class BoundingBox
 {
   @Getter
-  private double latMin;
+  private final double latMin;
 
   @Getter
-  private double latMax;
+  private final double latMax;
 
   @Getter
-  private double lonMin;
+  private final double lonMin;
 
   @Getter
-  private double lonMax;
+  private final double lonMax;
 
   public boolean intersects(BoundingBox bbox)
   {

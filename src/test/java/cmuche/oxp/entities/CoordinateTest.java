@@ -8,9 +8,9 @@ public class CoordinateTest
   @Test
   public void testDistance()
   {
-    Coordinate c1 = new Coordinate(1d, 1d);
-    Coordinate c2 = new Coordinate(1d, 1d);
-    Coordinate c3 = new Coordinate(2d, 5d);
+    Coordinate c1 = Coordinate.at(1d, 1d);
+    Coordinate c2 = Coordinate.at(1d, 1d);
+    Coordinate c3 = Coordinate.at(2d, 5d);
 
     Assert.assertEquals(0, c1.distanceTo(c2), 0);
 

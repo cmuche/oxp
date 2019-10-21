@@ -1,20 +1,16 @@
 package cmuche.oxp.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
-import lombok.ToString;
 
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data(staticConstructor = "at")
 public class Coordinate
 {
   @Getter
-  private double lat;
+  private final double lat;
 
   @Getter
-  private double lon;
+  private final double lon;
 
   public float distanceTo(Coordinate coord)
   {

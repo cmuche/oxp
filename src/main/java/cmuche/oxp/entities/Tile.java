@@ -1,13 +1,9 @@
 package cmuche.oxp.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
-import lombok.ToString;
 
-@AllArgsConstructor
-@EqualsAndHashCode
-@ToString
+@Data(staticConstructor = "at")
 public class Tile
 {
   public static Tile fromCoordinate(Coordinate coord, int zoom)
@@ -23,17 +19,17 @@ public class Tile
     if (y >= (1 << zoom))
       y = ((1 << zoom) - 1);
 
-    return new Tile(x, y, zoom);
+    return Tile.at(x, y, zoom);
   }
 
   @Getter
-  private int x;
+  private final int x;
 
   @Getter
-  private int y;
+  private final int y;
 
   @Getter
-  private int zoom;
+  private final int zoom;
 
   public BoundingBox getBoundingBox()
   {
@@ -42,6 +38,6 @@ public class Tile
     double minLon = x / Math.pow(2.0, zoom) * 360.0 - 180;
     double maxLon = (x + 1) / Math.pow(2.0, zoom) * 360.0 - 180;
 
-    return new BoundingBox(minLat, maxLat, minLon, maxLon);
+    return BoundingBox.of(minLat, maxLat, minLon, maxLon);
   }
 }

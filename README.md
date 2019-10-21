@@ -85,8 +85,8 @@ Since all OSM elements can have tags, tag filters are applicable on all filter t
 
 ```
 oxp.query().tagsMatch(TagMatcher.hasTag("man_made")).go();
-oxp.query().inBounds(new BoundingBox(52.02184, 52.02476, 8.52949, 8.53792)).go();
-oxp.query().inRange(new Coordinate(52.02184, 8.52949), 100).go();
+oxp.query().inBounds(BoundingBox.of(52.02184, 52.02476, 8.52949, 8.53792)).go();
+oxp.query().inRange(Coordinate.at(52.02184, 8.52949), 100).go();
 ```
 
 ##### Nodes
@@ -152,12 +152,12 @@ See https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
 
 #### From coordinate
 ```
-Tile t = Tile.fromCoordinate(new Coordinate(12.34d, 23.45d), 15);
+Tile t = Tile.fromCoordinate(Coordinate.at(12.34d, 23.45d), 15);
 ```
 
 #### Tile bounding box
 ```
-Tile tile = new Tile(70406, 42987, 17);
+Tile tile = Tile.at(70406, 42987, 17);
 BoundingBox bbox = tile.getBoundingBox();
 ```
 

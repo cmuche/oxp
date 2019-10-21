@@ -21,9 +21,9 @@ public class QueryTest
   public void init()
   {
     oxp = new Oxp();
-    Node n1 = new Node(new Id(ElementType.Node, "1"), new Coordinate(1, 2));
-    Node n2 = new Node(new Id(ElementType.Node, "2"), new Coordinate(1, 2));
-    Node n3 = new Node(new Id(ElementType.Node, "3"), new Coordinate(1, 2));
+    Node n1 = new Node(new Id(ElementType.Node, "1"), Coordinate.at(1, 2));
+    Node n2 = new Node(new Id(ElementType.Node, "2"), Coordinate.at(1, 2));
+    Node n3 = new Node(new Id(ElementType.Node, "3"), Coordinate.at(1, 2));
 
     n1.getTags().set("n", "1");
     n2.getTags().set("n", "2");
@@ -46,8 +46,8 @@ public class QueryTest
     oxp.getWays().add(w2);
 
     Relation r1 = new Relation(new Id(ElementType.Relation, "1"));
-    r1.getMembers().add(new Member(ElementType.Node, n1, "foo"));
-    r1.getMembers().add(new Member(ElementType.Way, w1, "bar"));
+    r1.getMembers().add(Member.of(ElementType.Node, n1, "foo"));
+    r1.getMembers().add(Member.of(ElementType.Way, w1, "bar"));
     r1.getTags().set("r", "1");
     oxp.getRelations().add(r1);
   }

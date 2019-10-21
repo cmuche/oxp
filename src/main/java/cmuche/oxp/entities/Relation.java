@@ -30,6 +30,6 @@ public class Relation extends OsmElement
     double maxLat = bbox.stream().map(x -> x.getLatMax()).max(Double::compareTo).get();
     double minLon = bbox.stream().map(x -> x.getLonMin()).min(Double::compareTo).get();
     double maxLon = bbox.stream().map(x -> x.getLonMax()).max(Double::compareTo).get();
-    return new BoundingBox(minLat, maxLat, minLon, maxLon);
+    return BoundingBox.of(minLat, maxLat, minLon, maxLon);
   }
 }

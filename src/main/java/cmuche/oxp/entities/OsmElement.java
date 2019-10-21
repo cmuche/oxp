@@ -36,7 +36,7 @@ public abstract class OsmElement
 
     double centerLat = (bbox.getLatMin() + bbox.getLatMax()) / 2d;
     double centerLon = (bbox.getLonMin() + bbox.getLonMax()) / 2d;
-    return new Coordinate(centerLat, centerLon);
+    return Coordinate.at(centerLat, centerLon);
   }
 
   public float distanceTo(OsmElement other)

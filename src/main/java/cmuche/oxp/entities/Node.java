@@ -18,6 +18,6 @@ public class Node extends OsmElement
   @Override
   public BoundingBox getBoundingBox()
   {
-    return new BoundingBox(coordinate.getLat(), coordinate.getLat(), coordinate.getLon(), coordinate.getLon());
+    return BoundingBox.of(coordinate.getLat(), coordinate.getLat(), coordinate.getLon(), coordinate.getLon());
   }
 }

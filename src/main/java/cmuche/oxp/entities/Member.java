@@ -1,20 +1,20 @@
 package cmuche.oxp.entities;
 
-import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NonNull;
 
-@AllArgsConstructor
+@Data(staticConstructor = "of")
 public class Member
 {
   @NonNull
   @Getter
-  private ElementType type;
+  private final ElementType type;
 
   @NonNull
   @Getter
-  private OsmElement element;
+  private final OsmElement element;
 
   @Getter
-  private String role;
+  private final String role;
 }

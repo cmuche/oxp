@@ -36,7 +36,7 @@ public class Way extends OsmElement
     double maxLat = coords.stream().map(x -> x.getLat()).max(Double::compareTo).get();
     double minLon = coords.stream().map(x -> x.getLon()).min(Double::compareTo).get();
     double maxLon = coords.stream().map(x -> x.getLon()).max(Double::compareTo).get();
-    bbox = new BoundingBox(minLat, maxLat, minLon, maxLon);
+    bbox = BoundingBox.of(minLat, maxLat, minLon, maxLon);
   }
 
   public boolean isArea()

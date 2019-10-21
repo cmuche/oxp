@@ -28,7 +28,7 @@ public class OxpSaxHandler extends DefaultHandler
   {
     double lat = Double.valueOf(attributes.getValue("lat"));
     double lon = Double.valueOf(attributes.getValue("lon"));
-    return new Coordinate(lat, lon);
+    return Coordinate.at(lat, lon);
   }
 
   private Id getId(String typeName, Attributes attributes)
@@ -86,7 +86,7 @@ public class OxpSaxHandler extends DefaultHandler
         String role = attributes.getValue("role");
         role = role == null || role.isEmpty() ? null : role;
 
-        Member member = new Member(type, element, role);
+        Member member = Member.of(type, element, role);
         current(Relation.class).getMembers().add(member);
       }
     }
