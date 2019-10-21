@@ -8,9 +8,9 @@ public class TileTest
   @Test
   public void testCoordToTile()
   {
-    Assert.assertEquals(new Tile(18518, 15252, 15), Tile.fromCoordinates(new Coordinate(12.34d, 23.45d), 15));
-    Assert.assertEquals(new Tile(296295, 244032, 19), Tile.fromCoordinates(new Coordinate(12.34d, 23.45d), 19));
-    Assert.assertEquals(new Tile(1, 1, 1), Tile.fromCoordinates(new Coordinate(0, 0), 1));
+    Assert.assertEquals(new Tile(18518, 15252, 15), Tile.fromCoordinate(new Coordinate(12.34d, 23.45d), 15));
+    Assert.assertEquals(new Tile(296295, 244032, 19), Tile.fromCoordinate(new Coordinate(12.34d, 23.45d), 19));
+    Assert.assertEquals(new Tile(1, 1, 1), Tile.fromCoordinate(new Coordinate(0, 0), 1));
   }
 
   @Test

@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 public class Tile
 {
-  public static Tile fromCoordinates(Coordinate coord, int zoom)
+  public static Tile fromCoordinate(Coordinate coord, int zoom)
   {
     int x = (int) Math.floor((coord.getLon() + 180) / 360 * (1 << zoom));
     int y = (int) Math.floor((1 - Math.log(Math.tan(Math.toRadians(coord.getLat())) + 1 / Math.cos(Math.toRadians(coord.getLat()))) / Math.PI) / 2 * (1 << zoom));
