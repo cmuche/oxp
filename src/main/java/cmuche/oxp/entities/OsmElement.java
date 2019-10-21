@@ -30,6 +30,10 @@ public abstract class OsmElement
   public Coordinate getCenter()
   {
     BoundingBox bbox = getBoundingBox();
+
+    if (bbox == null)
+      return null;
+
     double centerLat = (bbox.getLatMin() + bbox.getLatMax()) / 2d;
     double centerLon = (bbox.getLonMin() + bbox.getLonMax()) / 2d;
     return new Coordinate(centerLat, centerLon);
