@@ -146,7 +146,18 @@ Set<OsmElement> evenHousenumbers = oxp.query().tagsMatch(tagCollection ->
 
 ## Tools
 ### Slippy Map tiles
-...
+See https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
+
+#### From coordinate
+```
+Tile t = Tile.fromCoordinate(new Coordinate(12.34d, 23.45d), 15);
+```
+
+#### Tile bounding box
+```
+Tile tile = new Tile(70406, 42987, 17);
+BoundingBox bbox = tile.getBoundingBox();
+```
 
 ## Roadmap / TODO
 - Relations shape merging
