@@ -13,7 +13,7 @@
 <dependency>
   <groupId>de.cmuche</groupId>
   <artifactId>oxp</artifactId>
-  <version>1.4</version>
+  <version>1.5</version>
 </dependency>
 ```
 
