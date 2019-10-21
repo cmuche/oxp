@@ -81,11 +81,12 @@ Filters inside a query are scoped. This means some filters return elements of a 
 Filters which can return multiple element types can be type-filtered: For example ```oxp.query().ways()``` and following filter results are way-scoped.
 
 ##### All elements
-Since all OSM elements can have tags, tag filters are applicable on all filter types. Also bounding box related filters are possible on all types.
+Since all OSM elements can have tags, tag filters are applicable on all filter types. Also bounding box and distance related filters are possible on all types.
 
 ```
 oxp.query().tagsMatch(TagMatcher.hasTag("man_made")).go();
 oxp.query().inBounds(new BoundingBox(52.02184, 52.02476, 8.52949, 8.53792)).go();
+oxp.query().inRange(new Coordinate(52.02184, 8.52949), 100).go();
 ```
 
 ##### Nodes
