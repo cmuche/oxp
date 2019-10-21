@@ -60,6 +60,7 @@ group = tagCollection.group("addr")
 #### Ways
 - ```way.getNodes()``` returns an ordered list of nodes
 - ```way.isArea()``` checks if the first node equals the last node
+- ```way.length()``` calculates the way length in meters
 
 #### Relations
 ...
