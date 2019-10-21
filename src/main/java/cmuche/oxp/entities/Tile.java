@@ -37,8 +37,8 @@ public class Tile
 
   public BoundingBox getBoundingBox()
   {
-    double minLat = Math.toDegrees(Math.atan(Math.sinh(Math.PI - (2.0 * Math.PI * y) / Math.pow(2.0, zoom))));
-    double maxLat = Math.toDegrees(Math.atan(Math.sinh(Math.PI - (2.0 * Math.PI * (y + 1)) / Math.pow(2.0, zoom))));
+    double minLat = Math.toDegrees(Math.atan(Math.sinh(Math.PI - (2.0 * Math.PI * (y + 1)) / Math.pow(2.0, zoom))));
+    double maxLat = Math.toDegrees(Math.atan(Math.sinh(Math.PI - (2.0 * Math.PI * y) / Math.pow(2.0, zoom))));
     double minLon = x / Math.pow(2.0, zoom) * 360.0 - 180;
     double maxLon = (x + 1) / Math.pow(2.0, zoom) * 360.0 - 180;
 
