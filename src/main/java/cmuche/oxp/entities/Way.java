@@ -46,4 +46,17 @@ public class Way extends OsmElement
 
     return nodes.get(0).equals(nodes.get(nodes.size() - 1));
   }
+
+  public float length()
+  {
+    if (nodes.size() < 2)
+      return 0;
+
+    float dist = 0;
+
+    for (int i = 1; i < nodes.size(); i++)
+      dist += nodes.get(i - 1).distanceTo(nodes.get(i));
+
+    return dist;
+  }
 }

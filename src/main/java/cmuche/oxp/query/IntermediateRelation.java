@@ -2,6 +2,7 @@ package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.BoundingBox;
+import cmuche.oxp.entities.Coordinate;
 import cmuche.oxp.entities.Member;
 import cmuche.oxp.entities.Relation;
 import cmuche.oxp.tagmatch.TagCondition;
@@ -32,6 +33,13 @@ public class IntermediateRelation<T extends Relation> extends FindIntermediateOs
   public IntermediateRelation<T> inBounds(BoundingBox boundingBox)
   {
     getInBounds(boundingBox);
+    return this;
+  }
+
+  @Override
+  public IntermediateRelation<T> inRange(Coordinate coord, float range)
+  {
+    getInRange(coord, range);
     return this;
   }
 }

@@ -2,6 +2,7 @@ package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.BoundingBox;
+import cmuche.oxp.entities.Coordinate;
 import cmuche.oxp.entities.OsmElement;
 import cmuche.oxp.tagmatch.TagCondition;
 
@@ -18,6 +19,8 @@ public abstract class FindIntermediateOsm<T extends OsmElement> extends FindInte
 
   public abstract FindIntermediate<T> inBounds(BoundingBox bbox);
 
+  public abstract FindIntermediate<T> inRange(Coordinate coord, float range);
+
   protected void getTagsMatch(TagCondition condition)
   {
     currentElements = currentElements.filter(x -> condition.matches(x.getTags()));
@@ -26,5 +29,10 @@ public abstract class FindIntermediateOsm<T extends OsmElement> extends FindInte
   protected void getInBounds(BoundingBox bbox)
   {
     currentElements = currentElements.filter(x -> x.getBoundingBox() != null && bbox.intersects(x.getBoundingBox()));
+  }
+
+  protected void getInRange(Coordinate coord, float range)
+  {
+    currentElements = currentElements.filter(x -> x.getCenter() != null && x.getCenter().distanceTo(coord) <= range);
   }
 }

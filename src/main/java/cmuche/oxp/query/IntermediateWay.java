@@ -2,6 +2,7 @@ package cmuche.oxp.query;
 
 import cmuche.oxp.Oxp;
 import cmuche.oxp.entities.BoundingBox;
+import cmuche.oxp.entities.Coordinate;
 import cmuche.oxp.entities.Way;
 import cmuche.oxp.tagmatch.TagCondition;
 
@@ -31,6 +32,13 @@ public class IntermediateWay<T extends Way> extends FindIntermediateOsm<T>
   public IntermediateWay<T> inBounds(BoundingBox boundingBox)
   {
     getInBounds(boundingBox);
+    return this;
+  }
+
+  @Override
+  public IntermediateWay<T> inRange(Coordinate coord, float range)
+  {
+    getInRange(coord, range);
     return this;
   }
 }

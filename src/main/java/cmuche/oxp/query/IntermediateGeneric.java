@@ -44,4 +44,13 @@ public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateO
     getInBounds(boundingBox);
     return this;
   }
+
+  @Override
+  public IntermediateGeneric<T> inRange(Coordinate coord, float range)
+  {
+    getInRange(coord, range);
+    return this;
+  }
+
+
 }
