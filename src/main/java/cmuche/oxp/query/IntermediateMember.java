@@ -15,13 +15,13 @@ public class IntermediateMember<T extends Member> extends FindIntermediate<T>
 
   public IntermediateMember<T> roleIs(String role)
   {
-    currentElements = currentElements.filter(x -> x.getRole() != null && x.getRole().equals(role));
+    currentElements = currentElements.parallel().filter(x -> x.getRole() != null && x.getRole().equals(role));
     return this;
   }
 
   public IntermediateGeneric<OsmElement> elements()
   {
-    Stream<OsmElement> newStream = currentElements.map(member -> member.getElement());
+    Stream<OsmElement> newStream = currentElements.parallel().map(member -> member.getElement());
     return new IntermediateGeneric<>(oxp, newStream);
   }
 

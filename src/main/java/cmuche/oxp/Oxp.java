@@ -41,22 +41,22 @@ public class Oxp
 
   public IntermediateGeneric<OsmElement> queryFrom(Collection<OsmElement> scopeElements)
   {
-    return new IntermediateGeneric<>(this, scopeElements.stream());
+    return new IntermediateGeneric<>(this, scopeElements.stream().parallel());
   }
 
   public IntermediateNode<Node> queryFromNodes(Collection<Node> scopeElements)
   {
-    return new IntermediateNode<>(this, scopeElements.stream());
+    return new IntermediateNode<>(this, scopeElements.stream().parallel());
   }
 
   public IntermediateWay<Way> queryFromWays(Collection<Way> scopeElements)
   {
-    return new IntermediateWay<>(this, scopeElements.stream());
+    return new IntermediateWay<>(this, scopeElements.stream().parallel());
   }
 
   public IntermediateRelation<Relation> queryFromRelations(Collection<Relation> scopeElements)
   {
-    return new IntermediateRelation<>(this, scopeElements.stream());
+    return new IntermediateRelation<>(this, scopeElements.stream().parallel());
   }
 
 }

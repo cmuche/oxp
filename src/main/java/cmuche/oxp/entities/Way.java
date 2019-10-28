@@ -31,11 +31,11 @@ public class Way extends OsmElement
     if (nodes.isEmpty())
       bbox = null;
 
-    Set<Coordinate> coords = nodes.stream().map(x -> x.getCoordinate()).collect(Collectors.toSet());
-    double minLat = coords.stream().map(x -> x.getLat()).min(Double::compareTo).get();
-    double maxLat = coords.stream().map(x -> x.getLat()).max(Double::compareTo).get();
-    double minLon = coords.stream().map(x -> x.getLon()).min(Double::compareTo).get();
-    double maxLon = coords.stream().map(x -> x.getLon()).max(Double::compareTo).get();
+    Set<Coordinate> coords = nodes.stream().parallel().map(x -> x.getCoordinate()).collect(Collectors.toSet());
+    double minLat = coords.stream().parallel().map(x -> x.getLat()).min(Double::compareTo).get();
+    double maxLat = coords.stream().parallel().map(x -> x.getLat()).max(Double::compareTo).get();
+    double minLon = coords.stream().parallel().map(x -> x.getLon()).min(Double::compareTo).get();
+    double maxLon = coords.stream().parallel().map(x -> x.getLon()).max(Double::compareTo).get();
     bbox = BoundingBox.of(minLat, maxLat, minLon, maxLon);
   }
 

@@ -22,19 +22,19 @@ public class IntermediateGeneric<T extends OsmElement> extends FindIntermediateO
 
   public IntermediateWay<Way> ways()
   {
-    Stream stream = currentElements.filter(x -> x instanceof Way);
+    Stream stream = currentElements.parallel().filter(x -> x instanceof Way);
     return new IntermediateWay(oxp, stream);
   }
 
   public IntermediateNode<Node> nodes()
   {
-    Stream stream = currentElements.filter(x -> x instanceof Node);
+    Stream stream = currentElements.parallel().filter(x -> x instanceof Node);
     return new IntermediateNode(oxp, stream);
   }
 
   public IntermediateRelation<Relation> relations()
   {
-    Stream stream = currentElements.filter(x -> x instanceof Relation);
+    Stream stream = currentElements.parallel().filter(x -> x instanceof Relation);
     return new IntermediateRelation(oxp, stream);
   }
 

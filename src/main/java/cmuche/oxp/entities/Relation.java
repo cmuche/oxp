@@ -21,15 +21,15 @@ public class Relation extends OsmElement
   @Override
   public BoundingBox getBoundingBox()
   {
-    Set<BoundingBox> bbox = members.stream().map(x -> x.getElement().getBoundingBox()).filter(x -> x != null).collect(Collectors.toSet());
+    Set<BoundingBox> bbox = members.stream().parallel().map(x -> x.getElement().getBoundingBox()).filter(x -> x != null).collect(Collectors.toSet());
 
     if (bbox.isEmpty())
       return null;
 
-    double minLat = bbox.stream().map(x -> x.getLatMin()).min(Double::compareTo).get();
-    double maxLat = bbox.stream().map(x -> x.getLatMax()).max(Double::compareTo).get();
-    double minLon = bbox.stream().map(x -> x.getLonMin()).min(Double::compareTo).get();
-    double maxLon = bbox.stream().map(x -> x.getLonMax()).max(Double::compareTo).get();
+    double minLat = bbox.stream().parallel().map(x -> x.getLatMin()).min(Double::compareTo).get();
+    double maxLat = bbox.stream().parallel().map(x -> x.getLatMax()).max(Double::compareTo).get();
+    double minLon = bbox.stream().parallel().map(x -> x.getLonMin()).min(Double::compareTo).get();
+    double maxLon = bbox.stream().parallel().map(x -> x.getLonMax()).max(Double::compareTo).get();
     return BoundingBox.of(minLat, maxLat, minLon, maxLon);
   }
 }

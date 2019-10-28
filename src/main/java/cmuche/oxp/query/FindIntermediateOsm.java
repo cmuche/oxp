@@ -23,16 +23,16 @@ public abstract class FindIntermediateOsm<T extends OsmElement> extends FindInte
 
   protected void getTagsMatch(TagCondition condition)
   {
-    currentElements = currentElements.filter(x -> condition.matches(x.getTags()));
+    currentElements = currentElements.parallel().filter(x -> condition.matches(x.getTags()));
   }
 
   protected void getInBounds(BoundingBox bbox)
   {
-    currentElements = currentElements.filter(x -> x.getBoundingBox() != null && bbox.intersects(x.getBoundingBox()));
+    currentElements = currentElements.parallel().filter(x -> x.getBoundingBox() != null && bbox.intersects(x.getBoundingBox()));
   }
 
   protected void getInRange(Coordinate coord, float range)
   {
-    currentElements = currentElements.filter(x -> x.getCenter() != null && x.getCenter().distanceTo(coord) <= range);
+    currentElements = currentElements.parallel().filter(x -> x.getCenter() != null && x.getCenter().distanceTo(coord) <= range);
   }
 }

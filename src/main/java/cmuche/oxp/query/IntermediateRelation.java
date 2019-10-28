@@ -25,7 +25,7 @@ public class IntermediateRelation<T extends Relation> extends FindIntermediateOs
 
   public IntermediateMember<Member> members()
   {
-    Stream<Member> stream = currentElements.flatMap(x -> x.getMembers().stream());
+    Stream<Member> stream = currentElements.parallel().flatMap(x -> x.getMembers().stream());
     return new IntermediateMember<>(oxp, stream);
   }
 

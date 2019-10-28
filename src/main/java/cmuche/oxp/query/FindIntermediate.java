@@ -24,6 +24,6 @@ public abstract class FindIntermediate<T extends Object>
 
   public Stream<T> goAsStream()
   {
-    return currentElements;
+    return currentElements.parallel();
   }
 }

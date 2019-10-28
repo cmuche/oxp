@@ -24,7 +24,7 @@ public class IntermediateWay<T extends Way> extends FindIntermediateOsm<T>
 
   public IntermediateWay<T> isArea()
   {
-    currentElements = currentElements.filter(x -> x.isArea());
+    currentElements = currentElements.parallel().filter(x -> x.isArea());
     return this;
   }
 
