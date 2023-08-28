@@ -21,9 +21,9 @@ public class QueryTest
   public void init()
   {
     oxp = new Oxp();
-    Node n1 = new Node(new Id(ElementType.Node, "1"), Coordinate.at(1, 2));
-    Node n2 = new Node(new Id(ElementType.Node, "2"), Coordinate.at(1, 2));
-    Node n3 = new Node(new Id(ElementType.Node, "3"), Coordinate.at(1, 2));
+    Node n1 = new Node(new Id(ElementType.Node, "1", 1), Coordinate.at(1, 2));
+    Node n2 = new Node(new Id(ElementType.Node, "2", 1), Coordinate.at(1, 2));
+    Node n3 = new Node(new Id(ElementType.Node, "3", 1), Coordinate.at(1, 2));
 
     n1.getTags().set("n", "1");
     n2.getTags().set("n", "2");
@@ -33,19 +33,19 @@ public class QueryTest
     oxp.getNodes().add(n2);
     oxp.getNodes().add(n3);
 
-    Way w1 = new Way(new Id(ElementType.Way, "1"));
+    Way w1 = new Way(new Id(ElementType.Way, "1", 1));
     w1.getNodes().add(n1);
     w1.getNodes().add(n2);
     w1.getTags().set("w", "1");
     oxp.getWays().add(w1);
 
-    Way w2 = new Way(new Id(ElementType.Way, "2"));
+    Way w2 = new Way(new Id(ElementType.Way, "2", 1));
     w2.getNodes().add(n2);
     w2.getNodes().add(n3);
     w2.getTags().set("w", "2");
     oxp.getWays().add(w2);
 
-    Relation r1 = new Relation(new Id(ElementType.Relation, "1"));
+    Relation r1 = new Relation(new Id(ElementType.Relation, "1", 1));
     r1.getMembers().add(Member.of(ElementType.Node, n1, "foo"));
     r1.getMembers().add(Member.of(ElementType.Way, w1, "bar"));
     r1.getTags().set("r", "1");

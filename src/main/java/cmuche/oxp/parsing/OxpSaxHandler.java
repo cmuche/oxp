@@ -35,7 +35,10 @@ public class OxpSaxHandler extends DefaultHandler
   {
     ElementType type = EnumUtils.getEnumIgnoreCase(ElementType.class, typeName);
     String idStr = attributes.getValue("id");
-    return new Id(type, idStr);
+
+    String versionStr = attributes.getValue("version");
+    int versionVal = versionStr == null ? 0 : Integer.parseInt(attributes.getValue("version"));
+    return new Id(type, idStr, versionVal);
   }
 
   public <T extends OsmElement> T current(Class<T> type)
@@ -71,7 +74,7 @@ public class OxpSaxHandler extends DefaultHandler
     else if ("nd".equals(qName) && currentOsmElement instanceof Way)
     {
       String ref = attributes.getValue("ref");
-      Node node = byRef(Node.class, new Id(ElementType.Node, ref));
+      Node node = byRef(Node.class, new Id(ElementType.Node, ref, 0));
       current(Way.class).getNodes().add(node);
     }
     else if ("member".equals(qName) && currentOsmElement instanceof Relation)
@@ -80,7 +83,7 @@ public class OxpSaxHandler extends DefaultHandler
       String typeString = attributes.getValue("type");
       ElementType type = EnumUtils.getEnumIgnoreCase(ElementType.class, typeString);
 
-      OsmElement element = byRef(OsmElement.class, new Id(type, ref));
+      OsmElement element = byRef(OsmElement.class, new Id(type, ref, 0));
       if (element != null)
       {
         String role = attributes.getValue("role");
