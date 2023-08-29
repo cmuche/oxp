@@ -55,6 +55,18 @@ public class TagCollection
     }
   }
 
+  public Optional<String> getString(String key)
+  {
+    try
+    {
+      return Optional.of(get(key));
+    }
+    catch (Exception ex)
+    {
+      return Optional.empty();
+    }
+  }
+
   public Optional<Float> getFloat(String key)
   {
     try
